@@ -1,0 +1,64 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <div class="navbar-nav">
+    <h4 style="color: white">Staff</h4>
+  </div>
+
+  <div class="navbar-nav">
+    <h4 style="color: white">Welcome {{ username }}</h4>
+  </div>
+
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" (click)="logout()">Log out</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <!-- <a
+          href="staff/transfer-by-acc-num"
+          class="nav-link p-3 mb-2 bg-secondary text-white"
+          >By Account Number</a
+        > -->
+        <a href="staff/transfer-by-acc-num" class="nav-link active"
+          >By Account Number</a
+        >
+      </li>
+      <li class="nav-item">
+        <a href="staff/transfer-approve-bnf" class="nav-link active"
+          >Approve Beneficiary</a
+        >
+      </li>
+      <li class="nav-item">
+        <a href="staff/transfer-approve-acc" class="nav-link active"
+          >Approve Account</a
+        >
+      </li>
+      <li class="nav-item">
+        <a href="staff/transfer-block-cust" class="nav-link active"
+          >Enable / Block Customer</a
+        >
+      </li>
+    </ul>
+  </header>
+</div>
+<div>
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <!-- <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+    >
+      <h1 class="h2">Transfer</h1>
+      <div class="btn-toolbar mb-2 mb-md-0"></div>
+    </div> -->
+
+    <div>
+      <!-- <app-view-accounts></app-view-accounts> -->
+    </div>
+
+    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+  </main>
+</div>
+<!-- </div> -->

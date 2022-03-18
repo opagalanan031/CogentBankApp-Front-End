@@ -1,0 +1,129 @@
+<div class="row">
+  <!-- Payload from register api from backend App -->
+  <div class="col-md-6 offset-md-3">
+    <div>
+      <form
+        name="form"
+        (ngSubmit)="onSubmit()"
+        #f="ngForm"
+        class="mt-5 border p-4 bg-light shadow needs-validation"
+        novalidate
+      >
+        <div class="mb-3 col-md-10">
+          <label>Customer ID</label>
+          <input
+            type="text"
+            name="id"
+            class="form-control"
+            value="{{ id }}"
+            readonly
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>Full Name</label>
+          <input
+            type="text"
+            name="fullName"
+            class="form-control"
+            required
+            [(ngModel)]="form.fullName"
+            #fullName="ngModel"
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            class="form-control"
+            required
+            [(ngModel)]="form.phone"
+            #phone="ngModel"
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>PAN</label>
+          <input
+            type="text"
+            name="pan"
+            class="form-control"
+            required
+            [(ngModel)]="form.pan"
+            #pan="ngModel"
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>AADHAR</label>
+          <input
+            type="text"
+            name="aadhar"
+            class="form-control"
+            required
+            [(ngModel)]="form.aadhar"
+            #aadhar="ngModel"
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>Upload PAN</label>
+          <input
+            type="file"
+            name="panImage"
+            class="form-control"
+            required
+            [(ngModel)]="form.panImage"
+            #panImage="ngModel"
+          />
+        </div>
+
+        <div class="mb-3 col-md-10">
+          <label>Upload AADHAR</label>
+          <input
+            type="file"
+            name="aadharImage"
+            class="form-control"
+            required
+            [(ngModel)]="form.aadharImage"
+            #aadharImage="ngModel"
+          />
+        </div>
+
+        <div class="mb-3 col-md-7">
+          <label>Select Security Question</label>
+          <select
+            class="form-select"
+            aria-label="secret question"
+            name="secretQuestion"
+            required
+            [(ngModel)]="form.secretQuestion"
+            #secretQuestion="ngModel"
+          >
+            <option value="Favorite color?">Favorite color?</option>
+            <option value="Name of pet?">Name of pet?</option>
+            <option value="Childhood hero?">Childhood hero?</option>
+          </select>
+        </div>
+
+        <div class="mb-3 col-md-7">
+          <label>Enter Answer</label>
+          <input
+            type="text"
+            name="secretAnswer"
+            class="form-control"
+            required
+            [(ngModel)]="form.secretAnswer"
+            #secretAnswer="ngModel"
+          />
+        </div>
+
+        <div class="col-md-12">
+          <button class="btn btn-primary float-center">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

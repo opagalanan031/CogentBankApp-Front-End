@@ -1,0 +1,133 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a
+    class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
+    href="customer/update-profile"
+    >Profile</a
+  >
+
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a href class="nav-link" (click)="logout()">Log Out</a>
+    </div>
+  </div>
+
+  <div class="navbar-nav">
+    <h4 style="color: white">Welcome {{ username }}</h4>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav
+      id="sidebarMenu"
+      class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+    >
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="customer/create-account"
+            >
+              <span data-feather="home"></span>
+              Create Account
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customer/add-beneficiary">
+              <span data-feather="file"></span>
+              Add Beneficiary
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customer/remove-beneficiary">
+              <span data-feather="shopping-cart"></span>
+              Remove Beneficiary
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customer/transfer-amount">
+              <span data-feather="users"></span>
+              Transfer Money
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customer/view-statement">
+              <span data-feather="bar-chart-2"></span>
+              View Statement
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+      >
+        <h1 class="h2">Accoun Statements</h1>
+        <div class="btn-toolbar mb-2 mb-md-0"></div>
+      </div>
+
+      <div class="row g-2">
+        <div class="mb-3 col-md-5">
+          <select
+            class="form-select"
+            id="floatingSelectGrid"
+            aria-label="Floating label select example"
+          >
+            <!-- <option value=''>{{account.accountNumber}}</option> -->
+          </select>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Show</button>
+        </div>
+      </div>
+      <div>
+        <label><h6>Account Number:</h6></label>
+        {{ accountNo }}
+      </div>
+
+      <table class="table table-striped" border="1">
+        <thead>
+          <td colspan="4">
+            <h5 style="text-align: center">Account Details</h5>
+          </td>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Cr/Db</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--<tr *ngFor="let account of accounts | async">-->
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+    </main>
+  </div>
+</div>

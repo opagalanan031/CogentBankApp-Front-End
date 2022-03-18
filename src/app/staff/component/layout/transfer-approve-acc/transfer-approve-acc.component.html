@@ -1,0 +1,103 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Transfer</a>
+
+  <div class="navbar-nav">
+    <h4 style="color: white">Welcome {{ username }}</h4>
+  </div>
+
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" (click)="logout()">Log out</a>
+    </div>
+  </div>
+</header>
+
+<div>
+  <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <!-- <a
+            href="staff/transfer-by-acc-num"
+            class="nav-link p-3 mb-2 bg-secondary text-white"
+            >By Account Number</a
+          > -->
+          <a href="staff/transfer-by-acc-num" class="nav-link"
+            >By Account Number</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="staff/transfer-approve-bnf" class="nav-link"
+            >Approve Beneficiary</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="staff/transfer-approve-acc" class="nav-link active"
+            >Approve Account</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="staff/transfer-block-cust" class="nav-link"
+            >Enable / Block Customer</a
+          >
+        </li>
+      </ul>
+    </header>
+  </div>
+  <div>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div>
+        <div>
+          <h1>Newly Added Beneficiary</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Account Type</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Account Number</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Approve</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Personal</th>
+                <td>Rama Joco</td>
+                <td>423444332</td>
+                <td>5-1-2022</td>
+                <td>
+                  <button type="submit" class="btn btn-primary mb-3">
+                    Disapprove
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Business</th>
+                <td>John</td>
+                <td>2316775</td>
+                <td>12-01-2022</td>
+                <td>
+                  <button type="submit" class="btn btn-primary mb-3">
+                    Disapprove
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Personal</th>
+                <td>Jane</td>
+                <td>39875720</td>
+                <td>12-01-2022</td>
+                <td>
+                  <button type="submit" class="btn btn-primary mb-3">
+                    Disapprove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <table class="table table-striped" border="1">
+      <tbody>
+        <tr *ngFor="let account of accounts | async">
+          <td>
+            <div>Account Type: {{ account.accountType }}</div>
+            <div>Account Balance: {{ account.accountBalance }}</div>
+            <div>Enable/Disable: {{ account.enableStatus }}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

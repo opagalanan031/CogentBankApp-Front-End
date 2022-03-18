@@ -1,0 +1,79 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a href class="nav-link" (click)="logout()">Log Out</a>
+    </div>
+  </div>
+
+  <div class="navbar-nav">
+    <h4 style="color: white">Super Admin</h4>
+  </div>
+</header>
+
+<div>
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
+    <div class="container">
+      <a href="/admin/create-staff">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg"
+          href="/admin/create-staff"
+        >
+          Create Staff
+        </button>
+      </a>
+    </div>
+    <div class="container">
+      <a href="/admin/enable-staff">
+        <button type="button" class="btn btn-primary btn-lg">
+          Enable Staff
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-7 offset-md-2">
+    <div class="card card-container">
+      <table class="table table-striped" border="1">
+        <thead>
+          <td colspan="4">
+            <h5 style="text-align: center">Enable/Disable Staff</h5>
+          </td>
+          <tr>
+            <th scope="col">Staff Name</th>
+            <th scope="col">Staff User Name</th>
+            <th scope="col">Enable/Disable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--<tr *ngFor="let account of accounts | async">-->
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+</div>
