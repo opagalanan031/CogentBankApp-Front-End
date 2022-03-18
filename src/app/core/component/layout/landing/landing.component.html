@@ -1,1 +1,63 @@
+<div class="container">
+  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    {{ errorMsg }}
+  </div>
+  <div *ngIf="message" class="alert alert-primary" role="alert">
+    {{ message }}
+  </div>
+  <div class="row row-cols-2">
+    <div class="col">
+      <img class="img-fluid" src="" alt="Bank App" width="640" height="426" />
+      <p class="text-center fs-3 mt-3"></p>
+    </div>
+    <div class="col">
+      <div class="card login-form-card">
+        <div class="card-body">
+          <div class="form-signin">
+            <form class="mb-3">
+              <h1 class="h3 mb-3 fw-normal">Log In to your Account</h1>
 
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                  name="username"
+                  placeholder="Username"
+                  [(ngModel)]="loginReq.username"
+                />
+                <label for="floatingInput">Username</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  name="password"
+                  placeholder="Password"
+                  [(ngModel)]="loginForm.password"
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
+
+              <button
+                class="w-100 btn btn-lg btn-primary"
+                type="submit"
+                (click)="login()"
+              >
+                Login
+              </button>
+            </form>
+            <div class="text-center">
+              <a routerLink="/customer/forgot-password">Forgot Password?</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          Not a customer?
+          <a href="#" routerLink="/customer/register">Register here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

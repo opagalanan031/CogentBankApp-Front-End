@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/customer/service/auth.service';
+import { RegisterRequest } from 'src/app/model/register-request';
+import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-register',
@@ -14,72 +9,33 @@ import { AuthService } from 'src/app/customer/service/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  formGroup: any = {
-    username: null,
-    fullName: null,
-    password: null,
-  };
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
+  form = new RegisterRequest();
+  confirmPassword: string = '';
 
-  passwordFormGroup: FormGroup;
+  errorMsg: string = '';
+  message: string = '';
+
   constructor(
-    private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder
-  ) {
-    this.passwordFormGroup = this.formBuilder.group(
-      {
-        username: ['', [Validators.required]],
-        fullName: ['', [Validators.required]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(20),
-          ],
-        ],
-        passwordConfirmation: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(20),
-          ],
-        ],
-      },
-      {
-        validators: [
-          (form: AbstractControl) => {
-            const { password, passwordConfirmation } = form.value;
-            if (password !== passwordConfirmation) {
-              return {
-                notMatched: true,
-              };
-            } else {
-              return null;
-            }
-          },
-        ],
-      }
-    );
-  }
-  //
-  ngOnInit(): void {}
-  onSubmit(): void {
-    const { username, fullName, password } = this.passwordFormGroup.value;
-    this.authService
-      .register(username, fullName, password)
-      .subscribe((data) => {
-        console.log(data);
-      });
-    this.gotoHome();
-  }
+    private customerService: CustomerService
+  ) {}
 
-  gotoHome() {
-    this.router.navigate(['/customer/authenticate']);
-    alert('Customer Registered successfully!');
+  ngOnInit(): void {}
+
+  register() {
+    if (this.form.password !== this.confirmPassword) {
+      this.errorMsg = 'Passwords do not match!!!';
+    } else {
+      this.errorMsg = '';
+      this.customerService.register(this.form).subscribe({
+        next: (result) => {
+          alert('Customer registered successfully!');
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          this.errorMsg = err.message;
+        },
+      });
+    }
   }
 }

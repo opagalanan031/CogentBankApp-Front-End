@@ -5,7 +5,7 @@ import { RegisterComponent } from './component/auth/register/register.component'
 import { AddBeneficiaryComponent } from './component/layout/add-beneficiary/add-beneficiary.component';
 import { CreateAccountComponent } from './component/layout/create-account/create-account.component';
 import { ForgotPasswordComponent } from './component/layout/forgot-password/forgot-password.component';
-import { HomePageComponent } from './component/layout/home-page/home-page.component';
+
 import { RemoveBeneficiaryComponent } from './component/layout/remove-beneficiary/remove-beneficiary.component';
 import { TransferAmountComponent } from './component/layout/transfer-amount/transfer-amount.component';
 import { UpdatePasswordComponent } from './component/layout/update-password/update-password.component';
@@ -23,10 +23,7 @@ const routes: Routes = [
     path: 'authenticate',
     component: LoginComponent,
   },
-  {
-    path: 'home-page',
-    component: HomePageComponent,
-  },
+
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,

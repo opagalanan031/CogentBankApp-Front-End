@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { CustomerRoutingModule } from './customer-routing.module';
 import { RegisterComponent } from './component/auth/register/register.component';
-import { HomePageComponent } from './component/layout/home-page/home-page.component';
 import { LoginComponent } from './component/auth/login/login.component';
 import { ForgotPasswordComponent } from './component/layout/forgot-password/forgot-password.component';
 import { UpdatePasswordComponent } from './component/layout/update-password/update-password.component';
@@ -18,11 +17,13 @@ import { FormsModule } from '@angular/forms';
 import { ViewStatementComponent } from './component/layout/view-statement/view-statement.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './component/layout/navbar/navbar.component';
+import { MismatchedComponent } from './component/layout/mismatched/mismatched.component';
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    HomePageComponent,
+
     LoginComponent,
     ForgotPasswordComponent,
     UpdatePasswordComponent,
@@ -34,6 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     UpdateProfileComponent,
     ViewAccountsComponent,
     ViewStatementComponent,
+    NavbarComponent,
+    MismatchedComponent,
   ],
   imports: [
     CommonModule,

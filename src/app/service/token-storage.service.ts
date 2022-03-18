@@ -1,33 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtResponse } from '../interfaces/jwt-response';
 const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+const TOKEN_RESP_KEY = 'token-resp';
+//const USER_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
-  constructor(private router: Router) {}
+  constructor() {}
 
-  signOut(): void {
-    window.sessionStorage.clear();
+  clear() {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(TOKEN_RESP_KEY);
   }
-  public saveToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+
+  public saveToken(jwtToken: JwtResponse) {
+    localStorage.setItem(TOKEN_KEY, jwtToken.token);
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(jwtToken));
   }
+
   public getToken(): string | null {
-    return window.sessionStorage.getItem(TOKEN_KEY);
+    return localStorage.getItem(TOKEN_KEY);
   }
-  public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-  public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
+
+  public getTokenResponse(): JwtResponse | null {
+    const res = localStorage.getItem(TOKEN_RESP_KEY);
+
+    if (res) {
+      return JSON.parse(res);
     }
-    return {};
+
+    return null;
   }
 }
