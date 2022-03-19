@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
-import { Beneficiary } from 'src/app/customer/model/beneficiary';
-import { Observable } from 'rxjs';
+import { BeneficiaryStatus } from 'src/app/enums/beneficiary-status';
+import { BeneficiaryResponse } from 'src/app/interfaces/beneficiary-response';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-remove-beneficiary',
@@ -11,12 +11,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./remove-beneficiary.component.css'],
 })
 export class RemoveBeneficiaryComponent implements OnInit {
-  beneficiaries: Observable<Beneficiary[]> = this.reloadData();
-
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  userId: any;
+  submitted = false;
+  beneficiaries: BeneficiaryResponse[] = [];
 
   constructor(
     private customerService: CustomerService,
@@ -25,31 +22,31 @@ export class RemoveBeneficiaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id = user.id;
-    }
+    const jwtToken = this.tokenStorageService.getTokenResponse();
+    this.userId = jwtToken?.id;
+    this.getBeneficiaries();
+  }
+
+  getBeneficiaries() {
+    this.customerService.getBeneficiaries(this.userId).subscribe((data) => {
+      this.beneficiaries = data;
+    });
   }
 
   deleteBeneficiary(beneficiaryId: number) {
-    const user = this.tokenStorageService.getUser();
-    this.customerService.deleteBeneficiary(user.id, beneficiaryId).subscribe(
-      (data) => {
-        console.log(data);
-        this.reloadData();
-      },
-      (error) => console.log(error)
-    );
+    this.customerService
+      .deleteBeneficiary(this.userId, beneficiaryId)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          window.alert('Beneficiary deleted successfully!');
+          this.getBeneficiaries();
+        },
+        (error) => console.log(error)
+      );
   }
 
-  reloadData(): Observable<Beneficiary[]> {
-    const user = this.tokenStorageService.getUser();
-    return this.customerService.getBeneficiaries(user.id);
-  }
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+  public get beneficiaryStatus(): typeof BeneficiaryStatus {
+    return BeneficiaryStatus;
   }
 }

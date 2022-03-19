@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NewAccount } from 'src/app/customer/model/newAccount';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
-import { Account } from 'src/app/customer/model/account';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { CreateAccountRequest } from 'src/app/model/create-account-request';
+import { AccountType } from 'src/app/enums/account-type';
 
 @Component({
   selector: 'app-create-account',
@@ -11,15 +11,9 @@ import { Account } from 'src/app/customer/model/account';
   styleUrls: ['./create-account.component.css'],
 })
 export class CreateAccountComponent implements OnInit {
-  account: any = {
-    accountType: null,
-    amount: null,
-  };
-  newAccount?: NewAccount;
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  userId: any;
+  account: CreateAccountRequest = new CreateAccountRequest();
+  submitted = false;
 
   constructor(
     private customerService: CustomerService,
@@ -28,40 +22,48 @@ export class CreateAccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id = user.id;
-    }
+    const jwtToken = this.tokenStorageService.getTokenResponse();
+    this.userId = jwtToken?.id;
+  }
+
+  newAccount(): void {
+    this.submitted = false;
+    this.account = new CreateAccountRequest();
   }
 
   onSubmit(): void {
-    const { accountType, amount } = this.account;
+    this.submitted = true;
+    this.createAccount();
+  }
 
-    //this.newAccount = new NewAccount(accountType, amount);
+  createAccount() {
+    if (
+      this.account.accountBalance! < 0 ||
+      this.account.accountBalance == null ||
+      this.account.accountBalance!! == 0
+    ) {
+      document.getElementById('deposit')?.focus;
+      window.alert('deposit must be greater than zero...');
+    } else {
+      this.customerService.createAccount(this.userId, this.account).subscribe(
+        (data) => {
+          window.alert('Account created successfully!');
+          console.log(data);
+          this.gotoDashboard();
+        },
+        (error) => {
+          window.alert('Failed to create an account...');
+          console.log(error);
+        }
+      );
+    }
+  }
 
-    console.log(this.newAccount);
-    const user = this.tokenStorageService.getUser();
-    console.log(user.id);
-    this.customerService.createAccount(user.id, accountType, amount).subscribe(
-      (data) => {
-        console.log(data);
-        this.gotoDashboard();
-      },
-      (err) => {
-        this.errorMessage = err.error.message;
-      }
-    );
+  public get accountType(): typeof AccountType {
+    return AccountType;
   }
 
   gotoDashboard() {
-    this.router.navigate(['/customer/dashboard']);
-    alert('Account added successfully!');
-  }
-
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    location.href = '/view-dashboard';
   }
 }

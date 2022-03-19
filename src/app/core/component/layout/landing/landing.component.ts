@@ -26,7 +26,7 @@ export class LandingComponent implements OnInit {
         this.router.navigate(['/customer/dashboard']);
       } else if (this.authService.isStaff()) {
         this.router.navigate(['/staff/dashboard']);
-      } else if (this.autsService.isAdmin()) {
+      } else if (this.authService.isAdmin()) {
         this.router.navigate(['/admin/dashboard']);
       }
     }
@@ -36,15 +36,15 @@ export class LandingComponent implements OnInit {
     this.customerService.authenticate(this.loginReq).subscribe({
       next: (result) => {
         var roles = result.roles;
-        if (roles.includes('ROLE_ADMIN')) {
-          this._router.navigate(['/admin/dashboard']);
+        if (roles.includes('ROLE_CUSTOMER')) {
+          this.router.navigate(['/customer/dashboard']);
         } else if (roles.includes('ROLE_STAFF')) {
-          this._router.navigate(['/staff/dashboard']);
-        } else if (roles.includes('ROLE_CUSTOMER')) {
-          this._router.navigate(['/customer/dashboard']);
+          this.router.navigate(['/staff/dashboard']);
+        } else if (roles.includes('ROLE_ADMIN')) {
+          this.router.navigate(['/admin/dashboard']);
         } else {
-          this.errorMsg = 'Invalid role specified';
-          this._authService.logout();
+          this.errorMsg = 'Invalid role...';
+          this.authService.logout();
         }
       },
       error: (err) => {

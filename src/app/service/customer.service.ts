@@ -89,9 +89,9 @@ export class CustomerService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getBeneficiaries(userId: number): Observable<BeneficiaryResponse> {
+  getBeneficiaries(userId: number): Observable<BeneficiaryResponse[]> {
     return this.http
-      .get<BeneficiaryResponse>(API_URL + userId + '/beneficiary')
+      .get<BeneficiaryResponse[]>(API_URL + userId + '/beneficiary')
       .pipe(catchError(this.errorHandler));
   }
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Account } from 'src/app/customer/model/account';
-import { Accounts } from 'src/app/customer/model/accounts';
-import { Transfer } from 'src/app/customer/model/transfer';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { AllAccountsResponse } from 'src/app/interfaces/all-accounts-response';
+import { BeneficiaryResponse } from 'src/app/interfaces/beneficiary-response';
+import { TransferRequest } from 'src/app/model/transfer-request';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-transfer-amount',
@@ -14,18 +14,11 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   providers: [],
 })
 export class TransferAmountComponent implements OnInit {
-  accountList: Observable<Account[]> = this.reloadData();
-  transfer?: Transfer;
-  form: any = {
-    toAccount: null,
-    fromAccount: null,
-    amount: null,
-    reason: null,
-  };
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  request: TransferRequest = new TransferRequest();
+  accounts: AllAccountsResponse[] = [];
+  beneficiaries: BeneficiaryResponse[] = [];
+  userId: number | null = null;
+  errorMsg: string = '';
 
   constructor(
     private customerService: CustomerService,
@@ -34,49 +27,64 @@ export class TransferAmountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id = user.id;
+    const token = this.tokenStorageService.getTokenResponse();
+    if (token) {
+      this.userId = token.id;
+      this.request.by = this.userId;
+      this.loadAccounts(this.userId);
+      this.loadBeneficiaries(this.userId);
+    } else {
+      alert('Unable to verify...');
     }
   }
 
-  onSubmit() {
-    const user = this.tokenStorageService.getUser();
-    const { toAccount, fromAccount, amount, reason } = this.form;
-
-    this.transfer = new Transfer(
-      toAccount,
-      fromAccount,
-      amount,
-      reason,
-      user.username
-    );
-
-    this.customerService.transferAmount(this.transfer).subscribe(
-      (data) => {
-        console.log(data);
-        this.transfered();
+  loadAccounts(userId: number) {
+    this.customerService.getAccounts(userId).subscribe({
+      next: (result) => {
+        this.accounts = result;
       },
-      (err) => {
-        this.errorMessage = err.error.message;
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
+
+  loadBeneficiaries(userId: number) {
+    this.customerService.getBeneficiaries(userId).subscribe({
+      next: (result) => {
+        this.beneficiaries = result;
+      },
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
+
+  transfer(): void {
+    console.log(this.request);
+    if (
+      this.request.fromAccount &&
+      this.request.toAccount &&
+      this.request.amount
+    ) {
+      if (this.request.amount <= 0) {
+        alert('Transferred amount cannot be less than or equal to 0...');
+      } else if (this.request.fromAccount === this.request.toAccount) {
+        alert('Cannot transfer to the same acount...');
+      } else {
+        this.customerService.transferAmount(this.request).subscribe({
+          next: (result) => {
+            alert('Money transferred successfully!');
+            this.router.navigate(['/view-dashboard']);
+          },
+          error: (err) => {
+            console.log(err.message);
+            alert(err.message);
+          },
+        });
       }
-    );
-  }
-
-  reloadData(): Observable<Account[]> {
-    const user = this.tokenStorageService.getUser();
-    return this.customerService.getAccounts(user.id);
-  }
-
-  transfered() {
-    this.router.navigate(['/customer/dashboard']);
-    alert('Transfered successfully!');
-  }
-
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    } else {
+      this.errorMsg = 'Request invalid...';
+    }
   }
 }

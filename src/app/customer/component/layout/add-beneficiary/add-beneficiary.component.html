@@ -1,66 +1,8 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a
-    class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
-    href="customer/update-profile"
-    >Profile</a
-  >
-
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a href class="nav-link" (click)="logout()">Log Out</a>
-    </div>
-  </div>
-
-  <div class="navbar-nav">
-    <h4 style="color: white">Welcome {{ username }}</h4>
-  </div>
-</header>
-
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <nav
-      id="sidebarMenu"
-      class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
-    >
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="customer/create-account"
-            >
-              <span data-feather="home"></span>
-              Create Account
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customer/add-beneficiary">
-              <span data-feather="file"></span>
-              Add Beneficiary
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customer/remove-beneficiary">
-              <span data-feather="shopping-cart"></span>
-              Remove Beneficiary
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customer/transfer-amount">
-              <span data-feather="users"></span>
-              Transfer Money
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customer/view-statement">
-              <span data-feather="bar-chart-2"></span>
-              View Statement
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <app-navbar-customer
+      class="nav flex-column d-flex col-md-auto me-4"
+    ></app-navbar-customer>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
@@ -72,32 +14,30 @@
       <div>
         <form
           name="form"
+          id="addBeneficiary"
           (ngSubmit)="onSubmit()"
-          #f="ngForm"
           class="mt-5 border p-4 bg-light shadow needs-validation"
-          novalidate
         >
           <div class="row">
             <div class="mb-3 col-md-7">
               <input
-                type="text"
+                type="number"
                 name="accountNo"
                 class="form-control"
                 required
                 placeholder="Enter Account Number"
                 [(ngModel)]="beneficiary.accountNumber"
-                #accountNumber="ngModel"
               />
             </div>
             <div class="mb-3 col-md-7">
               <input
-                type="text"
+                type="number"
                 name="confirmAccount"
+                id="confirmAccount"
                 class="form-control"
                 required
                 placeholder="Confirm Account"
-                [(ngModel)]="beneficiary.confirmAccount"
-                #confirmAccount="ngModel"
+                #confirmAccount
               />
             </div>
           </div>
@@ -110,26 +50,25 @@
             <input
               class="form-check-input"
               type="radio"
-              name="type1"
-              id="type1"
-              value="SB"
+              name="accountType"
+              id="savingsBank"
+              [value]="accountType.SAVINGS"
               [(ngModel)]="beneficiary.accountType"
-              #accountType="ngModel"
-              checked
             />
-            <label class="form-check-label" for="type1"> Savings Bank </label>
+            <label class="form-check-label" for="savingsBank">
+              Savings Bank
+            </label>
           </div>
           <div class="mb-3 col-md-10">
             <input
               class="form-check-input"
               type="radio"
-              name="type2"
-              id="type2"
-              value="CA"
+              name="accountType"
+              id="currentAccount"
+              [value]="accountType.CURRENT"
               [(ngModel)]="beneficiary.accountType"
-              #accountType="ngModel"
             />
-            <label class="form-check-label" for="type2">
+            <label class="form-check-label" for="currentAccount">
               Current Account
             </label>
           </div>

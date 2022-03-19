@@ -1,31 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { CustomerService } from 'src/app/service/customer.service';
 import { Router } from '@angular/router';
+import { AllAccountsResponse } from 'src/app/interfaces/all-accounts-response';
+
 @Component({
   selector: 'app-view-dashboard',
   templateUrl: './view-dashboard.component.html',
   styleUrls: ['./view-dashboard.component.css'],
 })
 export class ViewDashboardComponent implements OnInit {
-  private roles: string[] = [];
-  isLoggedIn = false;
+  userId: any;
+  accounts: AllAccountsResponse[] = [];
+  accountsV: AllAccountsResponse[] = [];
+  errorMsg: string = '';
 
-  username?: string;
   constructor(
+    private customerService: CustomerService,
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
-  ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
 
-      this.username = user.username;
-    }
+  ngOnInit(): void {
+    this.reloadData();
   }
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+
+  reloadData() {
+    const jwtToken = this.tokenStorageService.getTokenResponse();
+    this.userId = jwtToken?.id;
+
+    this.customerService.getAccounts(this.userId).subscribe((accountsS) => {
+      this.accountsV = accountsS;
+      if (this.accountsV.length > 0) {
+        this.accounts = this.accountsV;
+      } else {
+        this.errorMsg =
+          'There is no available accounts in the system! Create a new account.';
+      }
+    });
+  }
+
+  getDetails(accountNo: number) {
+    console.log(accountNo);
+    location.href = '/view-accounts?id=' + accountNo;
   }
 }

@@ -1,8 +1,8 @@
 import { BeneficiaryStatus } from '../enums/beneficiary-status';
 
 export interface BeneficiaryResponse {
-  beneficiaryID: number;
-  beneficiaryAccountNo: number;
-  beneficiaryName: string;
+  beneficiaryId: number;
+  accountNumber: number;
+  username: string;
   active: BeneficiaryStatus;
 }

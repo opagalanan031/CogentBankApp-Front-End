@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { AccountType } from 'src/app/enums/account-type';
+import { AddBeneficiaryRequest } from 'src/app/model/add-beneficiary-request';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-add-beneficiary',
@@ -9,14 +11,11 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./add-beneficiary.component.css'],
 })
 export class AddBeneficiaryComponent implements OnInit {
-  beneficiary: any = {
-    accountNumber: null,
-    accountType: null,
-  };
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  beneficiary: AddBeneficiaryRequest = new AddBeneficiaryRequest();
+  userId: any;
+  submitted = false;
+  @ViewChild('confirmAccount')
+  confirmAccount: ElementRef | undefined;
 
   constructor(
     private customerService: CustomerService,
@@ -25,40 +24,54 @@ export class AddBeneficiaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id = user.id;
+    const jwtToken = this.tokenStorageService.getTokenResponse();
+    this.userId = jwtToken?.id;
+  }
+
+  public get accountType(): typeof AccountType {
+    return AccountType;
+  }
+
+  addBeneficiary() {
+    if (
+      this.beneficiary.accountNumber == null ||
+      this.confirmAccount?.nativeElement.value == '' ||
+      this.beneficiary.accountNumber != this.confirmAccount?.nativeElement.value
+    ) {
+      console.log(
+        this.beneficiary.accountNumber +
+          ',' +
+          this.confirmAccount?.nativeElement.value
+      );
+    } else {
+      console.log(
+        this.beneficiary.accountNumber +
+          ',' +
+          this.confirmAccount?.nativeElement.value
+      );
+      this.customerService
+        .addBeneficiary(this.userId, this.beneficiary)
+        .subscribe(
+          (data) => {
+            window.alert('Beneficiary added successfully!');
+            this.gotoDashboard();
+            console.log(data);
+          },
+          (error) => {
+            window.alert('Failed to add beneficiary...');
+            console.log(error);
+          }
+        );
     }
   }
 
   onSubmit(): void {
-    const { accountType, accountNumber } = this.beneficiary;
-    const user = this.tokenStorageService.getUser();
-
-    console.log(accountType);
-
-    this.customerService
-      .addBeneficiary(user.id, accountNumber, accountType)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.beneficiaryAdded();
-        },
-        (err) => {
-          this.errorMessage = err.error.message;
-        }
-      );
+    this.submitted = true;
+    this.addBeneficiary();
   }
 
-  beneficiaryAdded() {
+  gotoDashboard() {
     this.router.navigate(['/customer/dashboard']);
     alert('Beneficiary added successfully!');
-  }
-
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
   }
 }

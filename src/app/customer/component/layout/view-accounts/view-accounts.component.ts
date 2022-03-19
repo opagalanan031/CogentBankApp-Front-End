@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Accounts } from 'src/app/customer/model/accounts';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AccountDetailsResponse } from 'src/app/interfaces/account-details-response';
+import { AllAccountsResponse } from 'src/app/interfaces/all-accounts-response';
+import { TransactionsResponse } from 'src/app/interfaces/transactions-response';
+//import { saveAs } from 'file-saver';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-view-accounts',
@@ -11,29 +13,55 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./view-accounts.component.css'],
 })
 export class ViewAccountsComponent implements OnInit {
-  accounts: Observable<Accounts[]> = this.reloadData();
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  userId: any;
+  accountDetails = {} as AccountDetailsResponse;
+  transaction: TransactionsResponse[] = [];
+  accounts: AllAccountsResponse[] = [];
+  accountNo: any;
+  accountLength: number = 0;
 
   constructor(
     private customerService: CustomerService,
-    private router: Router,
+    private router: ActivatedRoute,
     private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id = user.id;
-    }
+    const jwtToken = this.tokenStorageService.getTokenResponse();
+    this.userId = jwtToken?.id;
+
+    this.router.queryParams.subscribe((data) => {
+      this.accountNo = data['id'];
+      console.log('accountNo' + this.accountNo);
+      this.getTransactions();
+    });
+
+    this.getAccounts();
   }
 
-  reloadData(): Observable<Accounts[]> {
-    const user = this.tokenStorageService.getUser();
-    return this.customerService.getAccounts(user.id);
+  updateAccountNo(value: any) {
+    console.log('accountNo: ' + value);
+    this.accountNo = value;
+    this.getTransactions();
+  }
+
+  getAccounts() {
+    this.customerService.getAccounts(this.userId).subscribe((accounts) => {
+      this.accounts = accounts;
+
+      if (!this.accountNo && accounts.length > 0) {
+        this.updateAccountNo(accounts[0].accountNumber);
+      }
+    });
+  }
+
+  getTransactions() {
+    this.customerService
+      .getAccount(this.userId, this.accountNo)
+      .subscribe((data) => {
+        console.log(data);
+        this.accountDetails = data;
+        this.transaction = data.transaction;
+      });
   }
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UpdateCustomer } from 'src/app/customer/model/updateCustomer';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { UpdateCustomerRequest } from 'src/app/model/update-customer-request';
 
 @Component({
   selector: 'app-update-profile',
@@ -10,82 +11,50 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./update-profile.component.css'],
 })
 export class UpdateProfileComponent implements OnInit {
-  updateCustomer?: UpdateCustomer;
+  form = new UpdateCustomerRequest();
+  userId: number | undefined;
 
-  form: any = {
-    fullName: null,
-    phone: null,
-    pan: null,
-    aadhar: null,
-    secretQuestion: null,
-    secretAnswer: null,
-    panImage: null,
-    aadharImage: null,
-  };
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  errorMsg: string = '';
+  message: string = '';
 
   constructor(
-    private customerService: CustomerService,
     private router: Router,
-    private tokenStorageService: TokenStorageService
+    private authService: AuthService,
+    private tokenStorageService: TokenStorageService,
+    private customerService: CustomerService
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id = user.id;
+    const jwtToken = this.tokenStorageService.getTokenResponse();
+    this.userId = jwtToken?.id;
+
+    if (this.userId) {
+      this.customerService.getCustomer(this.userId).subscribe({
+        next: (result) => {
+          this.form.updateFromResponse(result);
+        },
+        error: (err) => {
+          this.errorMsg = 'Unable to get details...';
+        },
+      });
+    } else {
+      this.errorMsg = 'Unable to get details...';
     }
   }
 
-  onSubmit(): void {
-    const user = this.tokenStorageService.getUser();
-    const {
-      fullName,
-      phone,
-      pan,
-      aadhar,
-      secretQuestion,
-      secretAnswer,
-      panImage,
-      aadharImage,
-    } = this.form;
-
-    this.updateCustomer = new UpdateCustomer(
-      fullName,
-      phone,
-      pan,
-      aadhar,
-      secretQuestion,
-      secretAnswer,
-      panImage,
-      aadharImage
-    );
-
-    console.log(this.updateCustomer.panImage);
-
-    this.customerService.updateProfile(user.id, this.updateCustomer).subscribe(
-      (data) => {
-        console.log(data);
-        this.customerUpdated();
-      },
-      (err) => {
-        this.errorMessage = err.error.message;
-      }
-    );
-  }
-
-  customerUpdated() {
-    this.router.navigate(['/customer/dashboard']);
-    alert('Customer updated successfully!');
-  }
-
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+  updateProfile() {
+    if (this.userId) {
+      this.customerService.updateProfile(this.userId, this.form).subscribe({
+        next: (result) => {
+          alert('Profile updated successfully!');
+          this.router.navigate(['/view-dashboard']);
+        },
+        error: (err) => {
+          this.errorMsg = err.message;
+        },
+      });
+    } else {
+      this.errorMsg = 'User with ID:' + this.userId + 'does not exist...';
+    }
   }
 }

@@ -1,8 +1,7 @@
 import { CustomerResponse } from '../interfaces/customer-response';
 
 export class UpdateCustomerRequest {
-  firstName: string | null = null;
-  lastName: string | null = null;
+  fullName: string | null = null;
   phone: string | null = null;
   pan: string | null = null;
   aadhar: string | null = null;
@@ -10,8 +9,8 @@ export class UpdateCustomerRequest {
   secretAnswer: string | null = null;
 
   updateFromResponse(response: CustomerResponse) {
-    this.firstName = response.firstName;
-    this.lastName = response.lastName;
+    this.fullName = response.fullName;
+
     this.phone = response.phone;
     this.pan = response.pan;
     this.aadhar = response.aadhar;

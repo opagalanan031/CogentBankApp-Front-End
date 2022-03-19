@@ -1,8 +1,7 @@
 export interface CustomerResponse {
   id: number;
   username: string;
-  firstName: string;
-  lastName: string;
+  fullName: string;
 
   secretQuestion: string;
   secretAnswer: string;

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UpdateCustomer } from 'src/app/customer/model/updateCustomer';
-import { CustomerService } from 'src/app/customer/service/customer.service';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { CustomerService } from 'src/app/service/customer.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,15 +9,12 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  form: any = {
-    username: null,
-    secretQuestion: null,
-    secretAnswer: null,
-  };
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  errorMessage = '';
+  userId: any;
+  username: any;
+
+  secretQ: any;
+  secretA: any;
+  matchedAnswer: any;
 
   constructor(
     private customerService: CustomerService,
@@ -29,24 +25,14 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    const { username, secretQuestion, secretAnswer } = this.form;
-    console.log(username);
-    console.log(secretQuestion);
-    console.log(secretAnswer);
-    this.customerService
-      .getDetails(username, secretQuestion, secretAnswer)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.updatePassword();
-        },
-        (err) => {
-          this.errorMessage = err.error.message;
-        }
-      );
-  }
-
-  updatePassword() {
-    this.router.navigate(['/customer/update-password']);
+    if (
+      this.secretA != this.matchedAnswer ||
+      this.matchedAnswer == null ||
+      this.matchedAnswer == ''
+    ) {
+      location.href = 'mismatched';
+    } else {
+      location.href = 'update-password?username=' + this.username;
+    }
   }
 }
