@@ -17,7 +17,7 @@
             class="form-select"
             id="select1"
             [(ngModel)]="accountDetails.accountNumber"
-            (ngModelChange)="changeAccountNumber($event)"
+            (ngModelChange)="updateAccountNo($event)"
             aria-label="Floating label select example"
           >
             <option *ngFor="let account of accounts">
@@ -51,8 +51,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let transaction of transactions"></tr>
-            <tr>
+            <tr *ngFor="let transaction of transactions">
               <td>{{ transaction.date }}</td>
               <td>{{ transaction.reference }}</td>
               <td>{{ transaction.amount }}</td>
