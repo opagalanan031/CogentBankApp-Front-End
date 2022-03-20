@@ -23,8 +23,10 @@ export class TransferApproveAccComponent implements OnInit {
   }
 
   reloadData() {
-    this._staffService.getNonApprovedAccs().subscribe((result) => {
-      this.accounts = result;
+    this._staffService.getNonApprovedAccs().subscribe({
+      next: (result) => {
+        this.accounts = result;
+      },
     });
   }
 

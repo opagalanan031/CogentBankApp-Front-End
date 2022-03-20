@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerStatus } from 'src/app/enums/customer-status';
+import { AllCustomersResponse } from 'src/app/interfaces/all-customers-response';
 import { UpdateCustomerStatusRequest } from 'src/app/model/update-customer-status-request';
 import { StaffService } from 'src/app/service/staff.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
@@ -11,7 +12,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
   styleUrls: ['./transfer-block-cust.component.css'],
 })
 export class TransferBlockCustComponent implements OnInit {
-  customers: AllAccountsResponse[] = [];
+  customers: AllCustomersResponse[] = [];
 
   constructor(
     private _tokenStorageService: TokenStorageService,

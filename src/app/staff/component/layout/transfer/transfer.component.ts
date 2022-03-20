@@ -38,14 +38,14 @@ export class TransferComponent implements OnInit {
           approve.amount = this.amount;
           approve.reason = this.reason;
           approve.byStaff = token.username;
-          this._staffService.putTransfer(approve).subscribe(
-            (result) => {
+          this._staffService.putTransfer(approve).subscribe({
+            next: (result) => {
               alert('Transfer Succeed');
             },
-            (err) => {
+            error: (err) => {
               alert(err.message);
-            }
-          );
+            },
+          });
         }
       }
     } else {

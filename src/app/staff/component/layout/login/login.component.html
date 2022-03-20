@@ -3,7 +3,6 @@
   <div class="col-md-6 offset-md-3">
     <div class="card card-container">
       <form
-        *ngIf="!isLoggedIn"
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
@@ -36,11 +35,7 @@
           <button class="btn btn-primary float-end">Login</button>
         </div>
         <div class="form-group">
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="f.submitted && isLoginFailed"
-          >
+          <div class="alert alert-danger" role="alert">
             Login failed: {{ errorMessage }}
           </div>
         </div>
@@ -48,8 +43,7 @@
       <p class="text-center mt-3 text-secondary">
         Owning an account with us? <a href="">Login Here</a>
       </p>
-      <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in as {{ roles }}.
+      <div class="alert alert-success">
         <p class="text-center mt-3 text-secondary">
           <a href="/staff/dashboard">Go to Dashboard</a>
         </p>

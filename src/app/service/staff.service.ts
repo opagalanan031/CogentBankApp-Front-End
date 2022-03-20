@@ -14,6 +14,8 @@ import { UpdateCustomerStatusRequest } from '../model/update-customer-status-req
 import { CustomerResponseFromStaff } from '../interfaces/customer-response-from-staff';
 import { TransferRequest } from '../model/transfer-request';
 import { StaffTransactionResponse } from '../interfaces/staff-transaction-response';
+import { ApprovedAccountRequest } from '../model/approved-account-request';
+import { TransferAmountRequest } from '../model/transfer-amount-request';
 
 const API_URL = 'http://localhost:9015/api/staff/';
 @Injectable({
@@ -60,17 +62,17 @@ export class StaffService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getNonApprovedAccs(): Observable<NonApprovedAccountResponse> {
+  getNonApprovedAccs(): Observable<NonApprovedAccountResponse[]> {
     return this._http
-      .get<NonApprovedAccountResponse>(API_URL + 'accounts/approve')
+      .get<NonApprovedAccountResponse[]>(API_URL + 'accounts/approve')
       .pipe(catchError(this.errorHandler));
   }
 
   putApproveAccs(
-    approve: ApproveAccountRequest
-  ): Observable<ApproveAccountRequest> {
+    approve: ApprovedAccountRequest
+  ): Observable<ApprovedAccountRequest> {
     return this._http
-      .put<ApproveAccountRequest>(API_URL + 'accounts/approve', approve)
+      .put<ApprovedAccountRequest>(API_URL + 'accounts/approve', approve)
       .pipe(catchError(this.errorHandler));
   }
 
@@ -94,7 +96,9 @@ export class StaffService {
       .pipe(catchError(this.errorHandler));
   }
 
-  putTransfer(approve: TransferRequest): Observable<StaffTransactionResponse> {
+  putTransfer(
+    approve: TransferAmountRequest
+  ): Observable<StaffTransactionResponse> {
     return this._http
       .put<StaffTransactionResponse>(API_URL + 'transfer', approve)
       .pipe(catchError(this.errorHandler));
