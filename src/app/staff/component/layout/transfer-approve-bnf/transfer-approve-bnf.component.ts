@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { NonApprovedBeneficiaryResponse } from 'src/app/interfaces/non-approved-beneficiary-response';
+import { ApproveBeneficiaryRequest } from 'src/app/model/approve-beneficiary-request';
+import { StaffService } from 'src/app/service/staff.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-transfer-approve-bnf',
@@ -8,30 +11,50 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./transfer-approve-bnf.component.css'],
 })
 export class TransferApproveBnfComponent implements OnInit {
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  roles?: string;
-  errorMessage = '';
+  benefs: NonApprovedBeneficiaryResponse[] = [];
 
   constructor(
-    private tokenStorageService: TokenStorageService,
-    private router: Router
+    private _tokenStorageService: TokenStorageService,
+    private _staffService: StaffService
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const staff = this.tokenStorageService.getUser();
-      this.roles = staff.roles;
+    this.reloadData();
+    // this.isLoggedIn = !!this.tokenStorageService.getToken();
+    // if (this.isLoggedIn) {
+    //   const staff = this.tokenStorageService.getUser();
+    //   this.roles = staff.roles;
 
-      this.username = staff.username;
-    }
+    //   this.username = staff.username;
+    // }
   }
 
-  logout(): void {
-    this.tokenStorageService.signOut();
-    // window.location.reload();
-    this.router.navigate(['/staff/authenticate']);
+  reloadData() {
+    this._staffService.getNonBeneficiaries().subscribe((result) => {
+      this.benefs = result;
+    });
   }
+
+  setStatus(customer: number, accountNum: number): void {
+    const approve = new ApproveBeneficiaryRequest();
+
+    approve.customerId = customer;
+    approve.beneficiaryAccountNumber = accountNum;
+    approve.isApproved = 'yes';
+    this._staffService.putBeneficiary(approve).subscribe(
+      (result) => {
+        alert('Congratulations, Your Beneficiary Approved');
+        window.location.reload();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  // logout(): void {
+  //   this.tokenStorageService.signOut();
+  //   // window.location.reload();
+  //   this.router.navigate(['/staff/authenticate']);
+  // }
 }

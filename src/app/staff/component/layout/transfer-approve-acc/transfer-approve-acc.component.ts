@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { StaffService } from 'src/app/service/staff.service';
+import { NonApprovedAccountResponse } from 'src/app/interfaces/non-approved-account-response';
+import { ApprovedAccountRequest } from 'src/app/model/approved-account-request';
 
 @Component({
   selector: 'app-transfer-approve-acc',
@@ -8,30 +11,36 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./transfer-approve-acc.component.css'],
 })
 export class TransferApproveAccComponent implements OnInit {
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  roles?: string;
-  errorMessage = '';
+  accounts: NonApprovedAccountResponse[] = [];
 
   constructor(
-    private tokenStorageService: TokenStorageService,
-    private router: Router
+    private _tokenStorageService: TokenStorageService,
+    private _staffService: StaffService
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const staff = this.tokenStorageService.getUser();
-      this.roles = staff.roles;
-
-      this.username = staff.username;
-    }
+    this.reloadData();
   }
 
-  logout(): void {
-    this.tokenStorageService.signOut();
-    // window.location.reload();
-    this.router.navigate(['/staff/authenticate']);
+  reloadData() {
+    this._staffService.getNonApprovedAccs().subscribe((result) => {
+      this.accounts = result;
+    });
+  }
+
+  setStatus(accountNum: number): void {
+    const token = this._tokenStorageService.getTokenResponse();
+    if (token === null) {
+      console.log('Please Login With Staff ID');
+    } else {
+      const approve = new ApprovedAccountRequest();
+      approve.accountNumber = accountNum;
+      approve.approved = 'yes';
+      approve.staffUserName = token.username;
+
+      this._staffService.putApproveAccs(approve).subscribe((result) => {
+        window.location.reload();
+      });
+    }
   }
 }

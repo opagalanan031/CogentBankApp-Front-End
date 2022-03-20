@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenStorageService } from 'src/app/customer/service/token-storage.service';
+import { CustomerStatus } from 'src/app/enums/customer-status';
+import { UpdateCustomerStatusRequest } from 'src/app/model/update-customer-status-request';
+import { StaffService } from 'src/app/service/staff.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-transfer-block-cust',
@@ -8,30 +11,61 @@ import { TokenStorageService } from 'src/app/customer/service/token-storage.serv
   styleUrls: ['./transfer-block-cust.component.css'],
 })
 export class TransferBlockCustComponent implements OnInit {
-  isLoggedIn = false;
-  username?: string;
-  id?: number;
-  roles?: string;
-  errorMessage = '';
+  customers: AllAccountsResponse[] = [];
 
   constructor(
-    private tokenStorageService: TokenStorageService,
-    private router: Router
+    private _tokenStorageService: TokenStorageService,
+    private _staffService: StaffService
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const staff = this.tokenStorageService.getUser();
-      this.roles = staff.roles;
+    this.reloadData();
+    // this.isLoggedIn = !!this.tokenStorageService.getToken();
+    // if (this.isLoggedIn) {
+    //   const staff = this.tokenStorageService.getUser();
+    //   this.roles = staff.roles;
 
-      this.username = staff.username;
+    //   this.username = staff.username;
+    // }
+  }
+
+  reloadData() {
+    this._staffService.getAllCusts().subscribe((result) => {
+      this.customers = result;
+    });
+  }
+
+  setStatusEn(customerId: number): void {
+    const approve = new UpdateCustomerStatusRequest();
+    const token = this._tokenStorageService.getTokenResponse();
+    if (token === null) {
+      console.log('Please Login With Staff ID');
+    } else {
+      approve.customerId = customerId;
+      approve.status = CustomerStatus.ENABLED;
+      this._staffService.putCustomerStatus(approve).subscribe((result) => {
+        window.location.reload();
+      });
     }
   }
 
-  logout(): void {
-    this.tokenStorageService.signOut();
-    // window.location.reload();
-    this.router.navigate(['/staff/authenticate']);
+  setStatusDis(customerId: number): void {
+    const approve = new UpdateCustomerStatusRequest();
+    const token = this._tokenStorageService.getTokenResponse();
+    if (token === null) {
+      console.log('Please Login With Staff ID');
+    } else {
+      approve.customerId = customerId;
+      approve.status = CustomerStatus.DISABLED;
+      this._staffService.putCustomerStatus(approve).subscribe((result) => {
+        window.location.reload();
+      });
+    }
   }
+
+  // logout(): void {
+  //   this.tokenStorageService.signOut();
+  //   // window.location.reload();
+  //   this.router.navigate(['/staff/authenticate']);
+  // }
 }
