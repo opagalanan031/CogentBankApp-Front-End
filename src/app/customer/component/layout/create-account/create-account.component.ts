@@ -37,6 +37,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   createAccount() {
+    console.log(this.account);
     if (
       this.account.accountBalance! < 0 ||
       this.account.accountBalance == null ||

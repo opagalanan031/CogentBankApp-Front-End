@@ -61,7 +61,7 @@ export class ViewAccountsComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.accountDetails = data;
-        this.transaction = data.transaction;
+        this.transaction = data.transactions;
       });
   }
 }

@@ -10,13 +10,19 @@
       <div *ngIf="errorMsg" class="card shadow rounded alignright p-3">
         {{ errorMsg }}
       </div>
-      <div class="card-columns">
+      <div class="col">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+        >
+          <h1 class="h2">View Accounts</h1>
+          <div class="btn-toolbar mb-2 mb-md-0"></div>
+        </div>
         <div *ngIf="accounts && accounts.length > 0">
           <div class="card shadow rounded" *ngFor="let account of accounts">
             <div class="alignright p-3">
               <p>Account Type: {{ account.accountType }}</p>
               <p>Account Balance: {{ account.accountBalance }}</p>
-              <p>Status: {{ account.accountStatus }}</p>
+              <p>Status: {{ account.enableStatus }}</p>
               <button
                 type="submit"
                 class="btn btn-primary btn-sm"

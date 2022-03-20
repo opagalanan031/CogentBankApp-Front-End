@@ -1,69 +1,42 @@
-<div class="container-fluid">
-  <div class="row">
-    <nav
-      id="sidebarMenu"
-      class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+<ul class="nav flex-column d-flex">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/view-dashboard" routerLinkActive="active">
+      <span data-feather="home"></span>
+      Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link active"
+      aria-current="page"
+      routerLink="/create-account"
+      routerActiveLink="active"
     >
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="/customer/view-dashboard"
-              routerLinkActive="active"
-            >
-              <span data-feather="home"></span>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              routerLink="customer/create-account"
-              routerLink="active"
-            >
-              Create Account
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="customer/add-beneficiary"
-              routerLink="active"
-            >
-              Add Beneficiary
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="customer/remove-beneficiary"
-              routerLink="active"
-            >
-              Remove Beneficiary
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="customer/transfer-amount"
-              routerLink="active"
-            >
-              Transfer Money
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="customer/view-statement"
-              routerLink="active"
-            >
-              View Statement
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</div>
+      Create Account
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/add-beneficiary" routerActiveLink="active">
+      Add Beneficiary
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      routerLink="/remove-beneficiary"
+      routerActiveLink="active"
+    >
+      Remove Beneficiary
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/transfer-amount" routerActiveLink="active">
+      Transfer Money
+    </a>
+  </li>
+  <li class="/nav-item">
+    <a class="nav-link" routerLink="/view-statement" routerActiveLink="active">
+      View Statement
+    </a>
+  </li>
+</ul>

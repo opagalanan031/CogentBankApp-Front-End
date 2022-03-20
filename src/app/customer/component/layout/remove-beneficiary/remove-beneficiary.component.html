@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <app-navbar-customer
       class="nav flex-column d-flex col-md-auto me-4"
@@ -22,11 +22,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let beneficiary of beneficiaries">
-              <td>{{ beneficiary.accountNumber }}</td>
-              <td>{{ beneficiary.username }}</td>
+              <td>{{ beneficiary.beneficiaryAccountNumber }}</td>
+              <td>{{ beneficiary.beneficiaryName }}</td>
               <td>
                 <button
-                  (click)="deleteBeneficiary(beneficiary.accountNumber)"
+                  (click)="deleteBeneficiary(beneficiary.beneficiaryId)"
                   class="btn btn-danger"
                 >
                   -

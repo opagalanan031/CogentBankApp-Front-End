@@ -1,6 +1,6 @@
 export interface CustomerResponse {
-  id: number;
-  username: string;
+  //id: number;
+  //username: string;
   fullName: string;
 
   secretQuestion: string;

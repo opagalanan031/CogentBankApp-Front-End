@@ -71,7 +71,6 @@ export class AddBeneficiaryComponent implements OnInit {
   }
 
   gotoDashboard() {
-    this.router.navigate(['/customer/dashboard']);
-    alert('Beneficiary added successfully!');
+    this.router.navigate(['/customer/view-dashboard']);
   }
 }
