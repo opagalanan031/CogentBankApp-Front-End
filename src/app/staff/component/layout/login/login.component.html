@@ -1,53 +1,54 @@
-<h3 class="text-center">Login as Staff</h3>
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <div class="card card-container">
-      <form
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-        <div class="mb-3 col-md-10">
-          <label for="username">User Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="username"
-            [(ngModel)]="form.username"
-            required
-            #username="ngModel"
-          />
-        </div>
-        <div class="mb-3 col-md-10">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="form.password"
-            required
-            #password="ngModel"
-          />
-        </div>
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <div class="col-md-12">
-          <button class="btn btn-primary float-end">Login</button>
-        </div>
-        <div class="form-group">
-          <div class="alert alert-danger" role="alert">
-            Login failed: {{ errorMessage }}
-          </div>
-        </div>
-      </form>
-      <p class="text-center mt-3 text-secondary">
-        Owning an account with us? <a href="">Login Here</a>
-      </p>
-      <div class="alert alert-success">
-        <p class="text-center mt-3 text-secondary">
-          <a href="/staff/dashboard">Go to Dashboard</a>
-        </p>
-      </div>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h3>Login as Staff</h3>
+    <div class="fadeIn first">
+      <img
+        src="../../../../../assets/img/StaffIcon.png"
+        id="icon"
+        alt="Staff Icon"
+      />
+    </div>
+    <form>
+      <input
+        type="text"
+        id="login"
+        class="fadeIn second"
+        name="username"
+        placeholder="login"
+        [(ngModel)]="form.username"
+        required
+        #username="ngModel"
+      />
+      <input
+        type="text"
+        id="password"
+        class="fadeIn third"
+        name="password"
+        placeholder="password"
+        [(ngModel)]="form.password"
+        required
+        #password="ngModel"
+      />
+      <input
+        type="submit"
+        class="fadeIn fourth"
+        value="Log In"
+        (click)="onSubmit()"
+      />
+    </form>
+
+    <div id="formFooter">
+      <a class="underlineHover" href="/customer/authenticate"
+        >Owning an account with us?</a
+      >
     </div>
   </div>
 </div>

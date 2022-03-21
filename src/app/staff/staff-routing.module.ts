@@ -6,18 +6,40 @@ import { TransferApproveAccComponent } from './component/layout/transfer-approve
 import { TransferApproveBnfComponent } from './component/layout/transfer-approve-bnf/transfer-approve-bnf.component';
 import { TransferBlockCustComponent } from './component/layout/transfer-block-cust/transfer-block-cust.component';
 import { TransferByAccNumComponent } from './component/layout/transfer-by-acc-num/transfer-by-acc-num.component';
+import { TransferComponent } from './component/layout/transfer/transfer.component';
 
 const routes: Routes = [
-  { path: 'authenticate', component: LoginComponent },
-  { path: 'transfer-approve-acc', component: TransferApproveAccComponent },
-  { path: 'transfer-approve-bnf', component: TransferApproveBnfComponent },
-  { path: 'transfer-block-cust', component: TransferBlockCustComponent },
-  { path: 'transfer-by-acc-num', component: TransferByAccNumComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'staff/login',
+    component: LoginComponent,
+  },
+  {
+    path: 'staff/transfer-approve-acc',
+    component: TransferApproveAccComponent,
+  },
+  {
+    path: 'staff/transfer-approve-bnf',
+    component: TransferApproveBnfComponent,
+  },
+  {
+    path: 'staff/transfer-block-cust',
+    component: TransferBlockCustComponent,
+  },
+  {
+    path: 'staff/transfer-by-acc-num',
+    component: TransferByAccNumComponent,
+  },
+  {
+    path: 'staff/dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: 'staff/transfer',
+    component: TransferComponent,
+  },
 ];
 
 @NgModule({
-  // declarations: [RouterModule.forChild(routes)],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreRoutingModule } from './core/core-routing.module';
 import { CustomerModule } from './customer/customer.module';
@@ -28,9 +28,10 @@ import { JwtInterceptor } from './utils/jwt-interceptor';
     StaffRoutingModule,
     AdminModule,
     AdminRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
