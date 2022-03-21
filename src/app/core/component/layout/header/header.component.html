@@ -144,19 +144,16 @@
               >
                 admin_panel_settings
               </span>
-              <span *ngIf="isStaff" class="glyphicon glyphicon-badge">
+              <span *ngIf="isStaff" class="material-icons-outlined me-1">
                 badge
               </span>
-              <span>{{ username }}</span>
+              <span>&nbsp;&nbsp;{{ username }}</span>
             </a>
           </li>
           <li *ngIf="loggedIn">
-            <button
-              class="nav-link glyphicon glyphicon-log-in"
-              (click)="logout()"
-            >
+            <a class="nav-link glyphicon glyphicon-log-in" (click)="logout()">
               Logout
-            </button>
+            </a>
           </li>
         </ul>
       </div>
