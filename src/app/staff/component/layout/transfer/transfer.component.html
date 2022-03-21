@@ -1,41 +1,73 @@
-<div>
-  <div class="container">
-    <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <!-- <a
-            href="staff/transfer-by-acc-num"
-            class="nav-link p-3 mb-2 bg-secondary text-white"
-            >By Account Number</a
-          > -->
-          <a href="staff/transfer-by-acc-num" class="nav-link"
-            >By Account Number</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer-approve-bnf" class="nav-link"
-            >Approve Beneficiary</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer-approve-acc" class="nav-link active"
-            >Approve Account</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer-block-cust" class="nav-link"
-            >Enable / Block Customer</a
-          >
-        </li>
-      </ul>
-    </header>
-  </div>
-  <div>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div>
-        <h1>TEST</h1>
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="container">
+  <staff-dashboard></staff-dashboard>
+
+  <div class="wrapper fadeInDown">
+    <div class="form-signin">
+      <div id="formContent">
+        <h1>Account Money Transfer</h1>
+        <div class="fadeIn first">
+          <img
+            src="../../../../../assets/img/transfer.jpg"
+            id="icon"
+            alt="Staff Icon"
+          />
+        </div>
+        <form>
+          <input
+            type="number"
+            id="fromAccNumber"
+            class="fadeIn second"
+            name="fromAccNumber"
+            placeholder="From Account Number"
+            min="1"
+            [(ngModel)]="fromAccNum"
+            required
+          />
+          <input
+            type="number"
+            id="toAccNumber"
+            class="fadeIn third"
+            name="toAccNumber"
+            placeholder="To Account Number"
+            min="1"
+            [(ngModel)]="toAccNum"
+            required
+          />
+          <input
+            type="number"
+            id="amount"
+            class="fadeIn third"
+            name="amount"
+            placeholder="Amount To Transfer : 0.00"
+            min="0.01"
+            step=".01"
+            [(ngModel)]="amount"
+            required
+          />
+          <input
+            type="text"
+            id="reason"
+            class="fadeIn third"
+            name="reason"
+            placeholder="Reason For Transfer"
+            [(ngModel)]="reason"
+          />
+          <input
+            type="submit"
+            class="fadeIn fourth"
+            value="Transfer"
+            (click)="setTransfer()"
+          />
+        </form>
       </div>
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-    </main>
+    </div>
   </div>
 </div>
