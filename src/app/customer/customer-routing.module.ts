@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerNavGuard } from '../guards/customer-nav.guard';
 import { LoginComponent } from './component/auth/login/login.component';
 import { RegisterComponent } from './component/auth/register/register.component';
 import { AddBeneficiaryComponent } from './component/layout/add-beneficiary/add-beneficiary.component';
@@ -28,46 +29,68 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+    //canActivate: [CustomerNavGuard],
+    //canLoad: [CustomerNavGuard],
   },
   {
     path: 'update-password',
     component: UpdatePasswordComponent,
+    //canActivate: [CustomerNavGuard],
+    //canLoad: [CustomerNavGuard],
   },
   {
     path: 'mismatched',
     component: MismatchedComponent,
+    //canActivate: [CustomerNavGuard],
+    //canLoad: [CustomerNavGuard],
   },
   {
     path: 'update-profile',
     component: UpdateProfileComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'view-dashboard',
     component: ViewDashboardComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'create-account',
     component: CreateAccountComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'add-beneficiary',
     component: AddBeneficiaryComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'remove-beneficiary',
     component: RemoveBeneficiaryComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'transfer-amount',
     component: TransferAmountComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'view-accounts',
     component: ViewAccountsComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
   {
     path: 'view-statement',
     component: ViewStatementComponent,
+    canActivate: [CustomerNavGuard],
+    canLoad: [CustomerNavGuard],
   },
 ];
 

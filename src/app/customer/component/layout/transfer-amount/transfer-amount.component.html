@@ -52,10 +52,10 @@
               >
                 <option selected disabled [value]="null">Select Account</option>
                 <option
-                  *ngFor="let beneficiary of beneficiaries"
-                  [value]="beneficiary.beneficiaryAccountNumber"
+                  *ngFor="let account of accounts"
+                  [value]="account.accountNumber"
                 >
-                  {{ beneficiary.beneficiaryAccountNumber }}
+                  {{ account.accountNumber }}
                 </option>
               </select>
             </div>

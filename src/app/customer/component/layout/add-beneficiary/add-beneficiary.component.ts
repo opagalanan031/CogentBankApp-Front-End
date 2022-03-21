@@ -43,6 +43,8 @@ export class AddBeneficiaryComponent implements OnInit {
           ',' +
           this.confirmAccount?.nativeElement.value
       );
+      window.alert('Account Numbers do not match!!!');
+      document.getElementById('comfirmAccount')?.focus();
     } else {
       console.log(
         this.beneficiary.accountNumber +
