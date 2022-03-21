@@ -61,7 +61,8 @@ export class TransferAmountComponent implements OnInit {
   }
 
   transfer(): void {
-    console.log(this.request);
+    console.log(this.request.toAccount);
+    console.log(this.request.fromAccount);
     if (
       this.request.fromAccount &&
       this.request.toAccount &&
@@ -69,7 +70,7 @@ export class TransferAmountComponent implements OnInit {
     ) {
       if (this.request.amount <= 0) {
         alert('Transferred amount cannot be less than or equal to 0...');
-      } else if (this.request.fromAccount === this.request.toAccount) {
+      } else if (this.request.fromAccount === +this.request.toAccount) {
         alert('Cannot transfer to the same acount...');
       } else {
         this.customerService.transferAmount(this.request).subscribe({

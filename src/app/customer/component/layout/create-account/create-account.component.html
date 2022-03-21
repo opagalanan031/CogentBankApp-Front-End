@@ -7,12 +7,17 @@
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
       >
-        <h1 class="h2">Create Account Form</h1>
+        <h1 class="h2">Create Account</h1>
         <div class="btn-toolbar mb-2 mb-md-0"></div>
       </div>
 
       <div>
-        <form id="createAccount" name="form" (ngSubmit)="onSubmit()">
+        <form
+          id="createAccount"
+          name="form"
+          (ngSubmit)="onSubmit()"
+          class="mt-5 border p-4 bg-light shadow needs-validation"
+        >
           <div class="row">
             <div class="mb-3 col-md-7">
               <input
@@ -60,7 +65,7 @@
           </div>
 
           <div class="col-md-12">
-            <button class="btn btn-primary float-end btn-success" type="submit">
+            <button class="btn btn-primary float-end" type="submit">
               Submit
             </button>
           </div>
