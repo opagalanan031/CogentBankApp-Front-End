@@ -26,6 +26,7 @@ export class TransferApproveAccComponent implements OnInit {
     this._staffService.getNonApprovedAccs().subscribe({
       next: (result) => {
         this.accounts = result;
+        console.log(this.accounts);
       },
     });
   }
@@ -38,7 +39,9 @@ export class TransferApproveAccComponent implements OnInit {
       const approve = new ApprovedAccountRequest();
       approve.accountNumber = accountNum;
       approve.approved = 'STATUS_APPROVED';
+
       approve.staffUsername = token.username;
+
 
       this._staffService.putApproveAccs(approve).subscribe((result) => {
         window.location.reload();
