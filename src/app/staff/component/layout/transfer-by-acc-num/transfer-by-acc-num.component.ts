@@ -37,8 +37,8 @@ export class TransferByAccNumComponent implements OnInit {
   // }
 
   accountDetails(): void {
-    this._staffService.getAccountByAccNum(this.accountNum).subscribe(
-      (result) => {
+    this._staffService.getAccountByAccNum(this.accountNum).subscribe({
+      next: (result) => {
         this.accounts = result;
         this.customerName = this.accounts.firstName
           .concat(' ')
@@ -46,7 +46,7 @@ export class TransferByAccNumComponent implements OnInit {
         this.accountBalance = this.accounts.balance;
         this.accountNumber = this.accounts.accountNumber;
       },
-      (err) => {
+      error: (err) => {
         this.accounts = {} as AccountLookupResponse;
         this.customerName = '';
         this.accountBalance = '';
@@ -57,7 +57,7 @@ export class TransferByAccNumComponent implements OnInit {
         } else {
           alert('Invalid Input. Please Enter Number Only.');
         }
-      }
-    );
+      },
+    });
   }
 }

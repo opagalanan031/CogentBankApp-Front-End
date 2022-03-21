@@ -44,18 +44,32 @@
                 <th scope="col">Approve</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle" *ngFor="let beneficiary of benefs">
               <tr>
-                <th scope="row">Sita-12345</th>
-                <td>Rama-44332</td>
-                <td>5-1-2022</td>
-                <td>
+                <th scope="row">{{ beneficiary.fromCustomer }}</th>
+                <td>{{ beneficiary.beneficiaryAccountNumber }}</td>
+                <td>{{ beneficiary.dateAdded }}</td>
+                <td *ngIf="beneficiary.isApproved == 'yes'">
                   <button type="submit" class="btn btn-primary mb-3">
                     Approve
                   </button>
                 </td>
+                <td *ngIf="beneficiary.isApproved == 'no'">
+                  <button
+                    type="submit"
+                    class="btn btn-primary mb-3"
+                    (click)="
+                      setStatus(
+                        beneficiary.fromCustomer,
+                        beneficiary.beneficiaryAccountNumber
+                      )
+                    "
+                  >
+                    Approve
+                  </button>
+                </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th scope="row">Jane-22112</th>
                 <td>John-6775</td>
                 <td>12-01-2022</td>
@@ -74,7 +88,7 @@
                     Approve
                   </button>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
