@@ -1,33 +1,5 @@
-<div>
-  <div class="container">
-    <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a href="staff/transfer-by-acc-num" class="nav-link active"
-            >By Account Number</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer-approve-bnf" class="nav-link"
-            >Approve Beneficiary</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer-approve-acc" class="nav-link"
-            >Approve Account</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer-block-cust" class="nav-link"
-            >Enable / Block Customer</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="staff/transfer" class="nav-link">Transfer Money</a>
-        </li>
-      </ul>
-    </header>
-  </div>
+<div class="container">
+  <staff-dashboard></staff-dashboard>
   <div>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div>
@@ -100,18 +72,6 @@
                 <td>{{ transaction.amount }}</td>
                 <td>{{ transaction.transactionType }}</td>
               </tr>
-              <!-- <tr>
-                <th scope="row">2-1-2022</th>
-                <td>222-trnsfr-comp</td>
-                <td>2000</td>
-                <td>Db</td>
-              </tr>
-              <tr>
-                <th scope="row">2-1-2022</th>
-                <td>459-credit card</td>
-                <td>1578</td>
-                <td>Db</td>
-              </tr> -->
             </tbody>
           </table>
         </div>
