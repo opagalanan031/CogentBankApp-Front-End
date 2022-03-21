@@ -35,6 +35,7 @@ export class ViewDashboardComponent implements OnInit {
       this.accountsV = accountsS;
       if (this.accountsV.length > 0) {
         this.accounts = this.accountsV;
+        console.log(this.accounts);
       } else {
         this.errorMsg =
           'There is no available accounts in the system! Create a new account.';
