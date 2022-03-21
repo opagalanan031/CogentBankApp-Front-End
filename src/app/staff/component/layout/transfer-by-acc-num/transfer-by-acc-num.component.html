@@ -22,33 +22,62 @@
             >Enable / Block Customer</a
           >
         </li>
+        <li class="nav-item">
+          <a href="staff/transfer" class="nav-link">Transfer Money</a>
+        </li>
       </ul>
     </header>
   </div>
   <div>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div>
-        <div class="row g-2">
-          <div class="col-auto">
-            <div class="col-md">
-              <div class="form-floating">
+        <form>
+          <table>
+            <tr>
+              <td>
+                <label for="CustomerID">Account Number </label>
+              </td>
+              <td>
                 <input
                   type="number"
                   class="form-control"
-                  id="floatingInputGrid"
-                  value="Enter Amount"
+                  id="accountNumber"
+                  name="accountNumber"
+                  min="1"
+                  [(ngModel)]="accountNumber"
                 />
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Transfer</button>
-          </div>
-        </div>
-        <div>
-          <a>Account Number: 1234&nbsp;</a> <a>Name: Park&nbsp;</a>
-          <a>Balance: 1,23,235&nbsp;</a>
-        </div>
+              </td>
+              <td>
+                <button
+                  class="w-100 btn btn-lg btn-primary"
+                  type="submit"
+                  (click)="accountDetails()"
+                >
+                  Search
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="customerName">Name: {{ customerName }}</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="accountBalance"
+                  >Balance: {{ accountBalance }}</label
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="accountNumberLabel"
+                  >Account Number: {{ accountNumber }}</label
+                >
+              </td>
+            </tr>
+          </table>
+        </form>
 
         <div>
           <h1>Account Details</h1>
@@ -61,14 +90,17 @@
                 <th scope="col">Cr/Db</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody
+              class="align-middle"
+              *ngFor="let transaction of accounts.transactions"
+            >
               <tr>
-                <th scope="row">1-1-2022</th>
-                <td>123-testing</td>
-                <td>500</td>
-                <td>Cr</td>
+                <th scope="row">{{ transaction.date }}</th>
+                <td>{{ transaction.reference }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.transactionType }}</td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th scope="row">2-1-2022</th>
                 <td>222-trnsfr-comp</td>
                 <td>2000</td>
@@ -79,7 +111,7 @@
                 <td>459-credit card</td>
                 <td>1578</td>
                 <td>Db</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>

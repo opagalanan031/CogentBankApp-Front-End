@@ -1,48 +1,52 @@
-<div class="container">
-  <header class="d-flex justify-content-center py-3">
-    <ul class="nav nav-pills">
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<nav class="navbar fixed-top navbar-expand-md navbar-new-bottom">
+  <div class="navbar-collapse collapse pt-2 pt-md-0" id="navbar2">
+    <!-- <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                  {{ errorMessage }}
+                </div>
+                <div *ngIf="message" class="alert alert-primary" role="alert">
+                  {{ message }}
+                </div> -->
+    <ul class="navbar-nav w-100 justify-content-center px-3">
       <li class="nav-item">
-        <!-- <a
-          href="staff/transfer-by-acc-num"
-          class="nav-link p-3 mb-2 bg-secondary text-white"
-          >By Account Number</a
-        > -->
-        <a href="staff/transfer-by-acc-num" class="nav-link active"
+        <a class="nav-link" href="staff/transfer-by-acc-num"
           >By Account Number</a
         >
       </li>
       <li class="nav-item">
-        <a href="staff/transfer-approve-bnf" class="nav-link active"
+        <a class="nav-link" href="staff/transfer-approve-bnf"
           >Approve Beneficiary</a
         >
       </li>
       <li class="nav-item">
-        <a href="staff/transfer-approve-acc" class="nav-link active"
+        <a class="nav-link" href="staff/transfer-approve-acc"
           >Approve Account</a
         >
       </li>
       <li class="nav-item">
-        <a href="staff/transfer-block-cust" class="nav-link active"
+        <a class="nav-link" href="staff/transfer-block-cust"
           >Enable / Block Customer</a
         >
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="staff/transfer">Transfer Money</a>
+      </li>
     </ul>
-  </header>
-</div>
+  </div>
+</nav>
 <div>
   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <!-- <div
-      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
-    >
-      <h1 class="h2">Transfer</h1>
-      <div class="btn-toolbar mb-2 mb-md-0"></div>
-    </div> -->
-
     <div>
       <!-- <app-view-accounts></app-view-accounts> -->
     </div>
-
     <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
   </main>
 </div>
-<!-- </div> -->

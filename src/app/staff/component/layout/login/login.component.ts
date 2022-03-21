@@ -1,6 +1,7 @@
 import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { throwIfEmpty } from 'rxjs';
 import { LoginRequest } from 'src/app/model/login-request';
 import { AuthService } from 'src/app/service/auth.service';
 import { StaffService } from 'src/app/service/staff.service';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   form = new LoginRequest();
   errorMessage: string = '';
   message: string = '';
-  imagePath: string = '../../../../images/StaffIcon.png';
+  // imagePath: string = '../../../../images/StaffIcon.png';
   // isLoggedIn = false;
   // isLoginFailed = false;
 
@@ -50,8 +51,12 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err) => {
-        this.errorMessage = err.message;
-        // this.isLoginFailed = true;
+        if (err.message == 'Bad credentials') {
+          this.errorMessage = 'User ID or Password Incorrect';
+        } else {
+          this.errorMessage = err.message;
+          // this.isLoginFailed = true;
+        }
       },
     });
   }

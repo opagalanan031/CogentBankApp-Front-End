@@ -27,6 +27,9 @@
             >Enable / Block Customer</a
           >
         </li>
+        <li class="nav-item">
+          <a href="staff/transfer" class="nav-link">Transfer Money</a>
+        </li>
       </ul>
     </header>
   </div>
@@ -40,16 +43,33 @@
               <tr>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Customer ID</th>
-                <th scope="col">Enable Disable</th>
+                <th scope="col">Customer Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle" *ngFor="let customer of customers">
               <tr>
-                <th scope="row">Rama</th>
-                <td>12345</td>
-                <td class="round"><input type="checkbox" /></td>
+                <th scope="row">{{ customer.customerName }}</th>
+                <td>{{ customer.customerId }}</td>
+                <td *ngIf="customer.status == 'ENABLED'">
+                  <button
+                    type="submit"
+                    class="btn btn-success"
+                    (click)="setStatusDis(customer.customerId)"
+                  >
+                    Enabled
+                  </button>
+                </td>
+                <td *ngIf="customer.status == 'DISABLED'">
+                  <button
+                    type="submit"
+                    class="btn btn-danger"
+                    (click)="setStatusEn(customer.customerId)"
+                  >
+                    Disabled
+                  </button>
+                </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th scope="row">Sita</th>
                 <td>67898</td>
                 <td class="round"><input type="checkbox" /></td>
@@ -58,7 +78,7 @@
                 <th scope="row">Harry</th>
                 <td>23409</td>
                 <td class="round"><input type="checkbox" /></td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>

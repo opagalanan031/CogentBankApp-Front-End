@@ -27,6 +27,9 @@
             >Enable / Block Customer</a
           >
         </li>
+        <li class="nav-item">
+          <a href="staff/transfer" class="nav-link">Transfer Money</a>
+        </li>
       </ul>
     </header>
   </div>
@@ -45,19 +48,28 @@
                 <th scope="col">Approve</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle" *ngFor="let account of accounts">
               <tr>
-                <th scope="row">Personal</th>
-                <td>Rama Joco</td>
-                <td>423444332</td>
-                <td>5-1-2022</td>
-                <td>
+                <th scope="row">{{ account.accountType }}</th>
+                <td>{{ account.customerName }}</td>
+                <td>{{ account.accountNumber }}</td>
+                <td>{{ account.dateCreated }}</td>
+                <td *ngIf="account.approved == 'yes'">
                   <button type="submit" class="btn btn-primary mb-3">
-                    Disapprove
+                    Approved
+                  </button>
+                </td>
+                <td *ngIf="account.approved == 'no'">
+                  <button
+                    type="submit"
+                    class="btn btn-primary mb-3"
+                    (click)="setStatus(account.accountNumber)"
+                  >
+                    Approve
                   </button>
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th scope="row">Business</th>
                 <td>John</td>
                 <td>2316775</td>
@@ -78,7 +90,7 @@
                     Disapprove
                   </button>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
