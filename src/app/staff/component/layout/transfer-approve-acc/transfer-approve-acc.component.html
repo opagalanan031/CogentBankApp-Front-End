@@ -54,7 +54,7 @@
                 <td>{{ account.customerName }}</td>
                 <td>{{ account.accountNumber }}</td>
                 <td>{{ account.dateCreated }}</td>
-                <td *ngIf="account.approved == 'yes'">
+                <td *ngIf="account.approved == 'STATUS_APPROVED'">
                   <button type="submit" class="btn btn-primary mb-3">
                     Approved
                   </button>
