@@ -16,7 +16,7 @@
         <tbody class="align-middle" *ngFor="let staff of staffs">
           <tr>
             <td>{{ staff.staffName }}</td>
-            <td>{{ staff.staffUserName }}</td>
+            <td>{{ staff.staffUsername }}</td>
             <td *ngIf="staff.status == 'STATUS_ENABLED'">
               <button
                 type="button"
