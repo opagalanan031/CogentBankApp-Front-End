@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { JwtResponse } from '../interfaces/jwt-response';
 const TOKEN_KEY = 'auth-token';
 const TOKEN_RESP_KEY = 'token-resp';
@@ -33,5 +32,14 @@ export class TokenStorageService {
     }
 
     return null;
+  }
+
+  // change from staff for login
+  public getUser(): any {
+    const user = window.sessionStorage.getItem(TOKEN_RESP_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+    return {};
   }
 }
