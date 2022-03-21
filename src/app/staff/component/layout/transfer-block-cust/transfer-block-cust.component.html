@@ -50,7 +50,7 @@
               <tr>
                 <th scope="row">{{ customer.customerName }}</th>
                 <td>{{ customer.customerId }}</td>
-                <td *ngIf="customer.status == 'ENABLED'">
+                <td *ngIf="customer.status == 'STATUS_ENABLED'">
                   <button
                     type="submit"
                     class="btn btn-success"
@@ -59,7 +59,7 @@
                     Enabled
                   </button>
                 </td>
-                <td *ngIf="customer.status == 'DISABLED'">
+                <td *ngIf="customer.status == 'STATUS_DISABLED'">
                   <button
                     type="submit"
                     class="btn btn-danger"
