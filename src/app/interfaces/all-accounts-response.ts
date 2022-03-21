@@ -3,7 +3,7 @@ import { AccountType } from '../enums/account-type';
 
 export interface AllAccountsResponse {
   accountNumber: number;
-  accountType: AccountType;
+  accountType: String;
   accountBalance: number;
-  enableStatus: AccountStatus;
+  enableStatus: String;
 }
