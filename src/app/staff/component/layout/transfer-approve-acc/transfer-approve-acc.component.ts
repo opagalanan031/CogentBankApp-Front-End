@@ -42,7 +42,6 @@ export class TransferApproveAccComponent implements OnInit {
 
       approve.staffUsername = token.username;
 
-
       this._staffService.putApproveAccs(approve).subscribe((result) => {
         window.location.reload();
       });

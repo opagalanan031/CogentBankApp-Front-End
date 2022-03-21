@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerStatus } from 'src/app/enums/customer-status';
-import { StaffRespose } from 'src/app/interfaces/staff-respose';
+import { StaffResponse } from 'src/app/interfaces/staff-response';
 import { UpdateStaffRequest } from 'src/app/model/update-staff-request';
 import { AdminService } from 'src/app/service/admin.service';
 
@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/service/admin.service';
   styleUrls: ['./view-staff.component.css'],
 })
 export class ViewStaffComponent implements OnInit {
-  staffs: StaffRespose[] = [];
+  staffs: StaffResponse[] = [];
 
   constructor(private adminService: AdminService) {}
 
@@ -38,7 +38,6 @@ export class ViewStaffComponent implements OnInit {
     request.staffId = staffId;
     request.status = CustomerStatus.STATUS_DISABLED;
 
-    console.log(request.status);
     this.adminService.updateStaffStatus(request).subscribe({
       next: (result) => {
         this.reloadData();
