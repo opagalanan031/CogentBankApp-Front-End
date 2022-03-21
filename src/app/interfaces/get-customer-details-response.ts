@@ -1,4 +1,4 @@
 export interface GetCustomerDetailsResponse {
-  securityQuestion: string;
-  securityAnswer: string;
+  secretQ: string;
+  secretA: string;
 }

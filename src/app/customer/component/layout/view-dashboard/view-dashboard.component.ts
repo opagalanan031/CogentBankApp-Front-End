@@ -29,6 +29,8 @@ export class ViewDashboardComponent implements OnInit {
     const jwtToken = this.tokenStorageService.getTokenResponse();
     this.userId = jwtToken?.id;
 
+    console.log(this.userId);
+
     this.customerService.getAccounts(this.userId).subscribe((accountsS) => {
       this.accountsV = accountsS;
       if (this.accountsV.length > 0) {
@@ -42,6 +44,6 @@ export class ViewDashboardComponent implements OnInit {
 
   getDetails(accountNo: number) {
     console.log(accountNo);
-    location.href = '/view-accounts?id=' + accountNo;
+    location.href = '/view-statement?id=' + accountNo;
   }
 }

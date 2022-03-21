@@ -5,5 +5,5 @@ export interface AllAccountsResponse {
   accountNumber: number;
   accountType: AccountType;
   accountBalance: number;
-  accountStatus: AccountStatus;
+  enableStatus: AccountStatus;
 }

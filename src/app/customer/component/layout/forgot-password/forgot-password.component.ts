@@ -14,7 +14,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   secretQ: any;
   secretA: any;
-  matchedAnswer: any;
+  matchedQ: any;
+  matchedA: any;
 
   constructor(
     private customerService: CustomerService,
@@ -25,14 +26,31 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    console.log(this.secretA);
+    console.log(this.matchedA);
     if (
-      this.secretA != this.matchedAnswer ||
-      this.matchedAnswer == null ||
-      this.matchedAnswer == ''
+      this.secretA != this.matchedA ||
+      this.matchedA == null ||
+      this.matchedA == ''
     ) {
       location.href = 'mismatched';
     } else {
       location.href = 'update-password?username=' + this.username;
     }
+  }
+
+  getUsername(value: any) {
+    this.username = value;
+    this.customerService.getDetails(this.username).subscribe(
+      (data) => {
+        console.log(data);
+        this.matchedQ = data.secretQ;
+        this.matchedA = data.secretA;
+      },
+      (error) => {
+        console.log(error);
+        this.secretQ = '';
+      }
+    );
   }
 }

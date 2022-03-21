@@ -7,5 +7,5 @@ export interface AccountDetailsResponse {
   accountType: AccountType;
   accountBalance: number;
   accountStatus: AccountStatus;
-  transaction: TransactionsResponse[];
+  transactions: TransactionsResponse[];
 }

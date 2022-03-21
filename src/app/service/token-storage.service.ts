@@ -17,7 +17,7 @@ export class TokenStorageService {
 
   public saveToken(jwtToken: JwtResponse) {
     localStorage.setItem(TOKEN_KEY, jwtToken.token);
-    localStorage.setItem(TOKEN_KEY, JSON.stringify(jwtToken));
+    localStorage.setItem(TOKEN_RESP_KEY, JSON.stringify(jwtToken));
   }
 
   public getToken(): string | null {

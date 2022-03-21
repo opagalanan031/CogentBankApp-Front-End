@@ -44,6 +44,7 @@ export class CustomerService {
   }
 
   getAccounts(userId: number): Observable<AllAccountsResponse[]> {
+    console.log(userId);
     return this.http
       .get<AllAccountsResponse[]>(API_URL + userId + '/account')
       .pipe(catchError(this.errorHandler));

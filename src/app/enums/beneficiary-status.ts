@@ -1,4 +1,7 @@
 export enum BeneficiaryStatus {
-  YES = 'YES',
-  NO = 'NO',
+  STATUS_ACTIVE = 'STATUS_ACTIVE',
+  STATUS_NOT_ACTIVE = 'STATUS_NOT_ACTIVE',
+
+  //YES = 'YES',
+  //NO = 'NO',
 }

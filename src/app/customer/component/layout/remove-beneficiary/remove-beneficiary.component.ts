@@ -29,7 +29,9 @@ export class RemoveBeneficiaryComponent implements OnInit {
 
   getBeneficiaries() {
     this.customerService.getBeneficiaries(this.userId).subscribe((data) => {
+      console.log(data);
       this.beneficiaries = data;
+      console.log(this.beneficiaries);
     });
   }
 

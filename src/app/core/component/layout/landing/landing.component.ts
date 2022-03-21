@@ -37,7 +37,7 @@ export class LandingComponent implements OnInit {
       next: (result) => {
         var roles = result.roles;
         if (roles.includes('ROLE_CUSTOMER')) {
-          this.router.navigate(['/customer/dashboard']);
+          this.router.navigate(['/customer/view-dashboard']);
         } else if (roles.includes('ROLE_STAFF')) {
           this.router.navigate(['/staff/dashboard']);
         } else if (roles.includes('ROLE_ADMIN')) {

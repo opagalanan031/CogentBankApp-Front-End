@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <app-navbar-customer
       class="nav flex-column d-flex col-md-auto me-4"
@@ -26,23 +26,30 @@
           </select>
         </div>
         <br />
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">Show</button>
+      </div>
+      <div>
+        <div>
+          <label><h6>Account Number:</h6></label>
+          <span *ngIf="accountDetails">
+            {{ accountDetails.accountNumber }}</span
+          >
+        </div>
+        <div>
+          <label><h6>Account Balance:</h6></label>
+          <span *ngIf="accountDetails">
+            {{ accountDetails.accountBalance }}</span
+          >
         </div>
       </div>
-      <div>
-        <label><h6>Account Number:</h6></label>
-        <span *ngIf="accountDetails"> {{ accountDetails.accountNumber }}</span>
-        <label><h6>Account Balance:</h6></label>
-        <span *ngIf="accountDetails"> {{ accountDetails.accountBalance }}</span>
-      </div>
-      <div>
-        <h5 style="text-align: center">Account Details</h5>
-      </div>
+
       <div id="exportable">
         <table id="table" class="table table-striped" border="1">
           <thead>
-            <td colspan="4"></td>
+            <td colspan="4">
+              <div>
+                <h5 style="text-align: center">Account Details</h5>
+              </div>
+            </td>
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Reference</th>

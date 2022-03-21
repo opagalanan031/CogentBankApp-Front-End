@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <app-navbar-customer
       class="nav flex-column d-flex col-md-auto me-4"
@@ -12,7 +12,6 @@
       </div>
 
       <form id="sourceAccountTable">
-        >
         <div><h6>Select Source Accounts</h6></div>
         <table class="table table-bordered">
           <thead>
@@ -30,7 +29,7 @@
               <td>{{ account.accountType }}</td>
               <td>
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="fromAccount"
                   id="fromAccount"
                   [value]="account.accountNumber"
@@ -54,9 +53,9 @@
                 <option selected disabled [value]="null">Select Account</option>
                 <option
                   *ngFor="let beneficiary of beneficiaries"
-                  [value]="beneficiary.accountNumber"
+                  [value]="beneficiary.beneficiaryAccountNumber"
                 >
-                  {{ beneficiary.accountNumber }}
+                  {{ beneficiary.beneficiaryAccountNumber }}
                 </option>
               </select>
             </div>

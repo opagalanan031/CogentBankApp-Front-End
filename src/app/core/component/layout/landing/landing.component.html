@@ -1,23 +1,79 @@
-<div class="container">
-  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
-    {{ errorMsg }}
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <div class="form-signin">
+    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+      {{ errorMsg }}
+    </div>
+    <div *ngIf="message" class="alert alert-primary" role="alert">
+      {{ message }}
+    </div>
+    <div id="formContent">
+      <h1>Log In to your Account</h1>
+      <div class="fadeIn first">
+        <img
+          src="../../../../../assets/img/StaffIcon.png"
+          id="icon"
+          alt="Staff Icon"
+        />
+      </div>
+      <form>
+        <input
+          type="text"
+          id="login"
+          class="fadeIn second"
+          name="username"
+          placeholder="login"
+          [(ngModel)]="loginReq.username"
+        />
+        <input
+          type="text"
+          id="password"
+          class="fadeIn third"
+          name="password"
+          placeholder="password"
+          [(ngModel)]="loginReq.password"
+        />
+
+        <input
+          type="submit"
+          class="fadeIn fourth"
+          value="Log In"
+          (click)="login()"
+        />
+        <div>
+          <a routerLink="/customer/forgot-password">Forgot Password?</a>
+        </div>
+      </form>
+
+      <div id="formFooter">
+        <a class="underlineHover" href="#" routerLink="/customer/register"
+          >Register here</a
+        >
+      </div>
+    </div>
   </div>
-  <div *ngIf="message" class="alert alert-primary" role="alert">
-    {{ message }}
-  </div>
-  <div class="row row-cols-2">
-    <div class="col">
+</div>
+<!-- <div class="col-md-6 offset-md-3"> -->
+<!-- <div class="col">
       <img class="img-fluid" src="" alt="Bank App" width="640" height="426" />
       <p class="text-center fs-3 mt-3"></p>
-    </div>
-    <div class="col">
+    </div>-->
+<!-- <div class="col">
+      <div class="mb-3 col-md-10 form-group">
+        <h1 class="h3 mb-3 text-center">Log In to your Account</h1>
+      </div>
       <div class="card login-form-card">
         <div class="card-body">
           <div class="form-signin">
             <form class="mb-3">
-              <h1 class="h3 mb-3 fw-normal">Log In to your Account</h1>
-
-              <div class="form-floating">
+              <div class="mb-3 col-md-10 form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -26,9 +82,8 @@
                   placeholder="Username"
                   [(ngModel)]="loginReq.username"
                 />
-                <label for="floatingInput">Username</label>
               </div>
-              <div class="form-floating">
+              <div class="mb-3 col-md-10 form-group">
                 <input
                   type="password"
                   class="form-control"
@@ -37,20 +92,20 @@
                   placeholder="Password"
                   [(ngModel)]="loginReq.password"
                 />
-                <label for="floatingPassword">Password</label>
               </div>
 
-              <button
-                class="w-100 btn btn-lg btn-primary"
-                type="submit"
-                (click)="login()"
-              >
-                Login
-              </button>
+              <div class="col-md-12">
+                <a routerLink="/customer/forgot-password">Forgot Password?</a>
+
+                <button
+                  class="w-50 btn btn-primary float-end"
+                  type="submit"
+                  (click)="login()"
+                >
+                  Login
+                </button>
+              </div>
             </form>
-            <div class="text-center">
-              <a routerLink="/customer/forgot-password">Forgot Password?</a>
-            </div>
           </div>
         </div>
         <div class="card-footer text-center">
@@ -60,4 +115,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
