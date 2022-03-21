@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnableStaffComponent } from './enable-staff.component';
+import { ViewStaffComponent } from './view-staff.component';
 
-describe('EnableStaffComponent', () => {
-  let component: EnableStaffComponent;
-  let fixture: ComponentFixture<EnableStaffComponent>;
+describe('ViewStaffComponent', () => {
+  let component: ViewStaffComponent;
+  let fixture: ComponentFixture<ViewStaffComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EnableStaffComponent ]
+      declarations: [ ViewStaffComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EnableStaffComponent);
+    fixture = TestBed.createComponent(ViewStaffComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

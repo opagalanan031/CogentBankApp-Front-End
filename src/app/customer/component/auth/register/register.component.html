@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
     {{ errorMsg }}
   </div>
@@ -9,67 +9,75 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card card-container">
-        <form id="register" name="form">
-          <div class="mb-3 col-md-10">
-            <label for="username">User Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              name="username"
-              placeholder="Enter User Name"
-              [(ngModel)]="form.username"
-            />
-          </div>
+        <form
+          id="register"
+          name="form"
+          class="border p-4 bg-light shadow needs-validation"
+        >
+          <div class="row">
+            <div class="mb-3 col-md-10">
+              <label for="username">User Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="Enter User Name"
+                [(ngModel)]="form.username"
+              />
+            </div>
 
-          <div class="mb-3 col-md-10">
-            <label for="fullName">Full Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="fullFame"
-              id="fullName"
-              placeholder="Enter Your Full Name"
-              [(ngModel)]="form.fullName"
-            />
-          </div>
-          <div class="mb-3 col-md-10 form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              id="password"
-              placeholder="Enter Password"
-              [(ngModel)]="form.password"
-            />
-          </div>
+            <div class="mb-3 col-md-10">
+              <label for="fullName">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="fullFame"
+                id="fullName"
+                placeholder="Enter Your Full Name"
+                [(ngModel)]="form.fullName"
+              />
+            </div>
+            <div class="mb-3 col-md-10 form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="password"
+                placeholder="Enter Password"
+                [(ngModel)]="form.password"
+              />
+            </div>
 
-          <div class="mb-3 col-md-10 form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              id="confirmPassword"
-              placeholder="Confirm Password"
-              [(ngModel)]="confirmPassword"
-            />
-          </div>
+            <div class="mb-3 col-md-10 form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                [(ngModel)]="confirmPassword"
+              />
+            </div>
 
-          <div class="col-md-12">
-            <button
-              class="btn btn-primary float-center"
-              type="submit"
-              (click)="register()"
-            >
-              Register
-            </button>
+            <div class="col-md-12">
+              <div class="form-group">
+                <button
+                  class="btn btn-primary float-center"
+                  type="submit"
+                  (click)="register()"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+            <p class="text-center mt-3 text-secondary">
+              If you have a Customer account, Please
+              <a href="/">Login Here</a>
+            </p>
           </div>
-          <p class="text-center mt-3 text-secondary">
-            If you have a Customer account, Please
-            <a href="/">Login Here</a>
-          </p>
         </form>
       </div>
     </div>

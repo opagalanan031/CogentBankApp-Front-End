@@ -29,17 +29,17 @@
           id="login"
           class="fadeIn second"
           name="username"
-          placeholder="login"
+          placeholder="Enter User Name"
           [(ngModel)]="form.username"
           required
           #username="ngModel"
         />
         <input
-          type="text"
+          type="password"
           id="password"
           class="fadeIn third"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           [(ngModel)]="form.password"
           required
           #password="ngModel"
@@ -53,9 +53,7 @@
       </form>
 
       <div id="formFooter">
-        <a class="underlineHover" href="/customer/authenticate"
-          >Owning an account with us?</a
-        >
+        <a class="underlineHover" href="/">Owning an account with us?</a>
       </div>
     </div>
   </div>

@@ -9,12 +9,10 @@
     <h3 class="text-center">Update Profile</h3>
     <div class="col-md-6 offset-md-3">
       <div>
-        <form
-          name="form"
-          class="mt-5 border p-4 bg-light shadow needs-validation"
-        >
+        <form name="form">
           <div class="mb-3 col-md-10">
             <label>Customer ID</label>
+
             <span
               class="form-control bg-light"
               id="id"
@@ -40,7 +38,7 @@
             <label>Phone</label>
             <input
               type="text"
-              name="fullName"
+              name="phone"
               id="phone"
               class="form-control"
               [(ngModel)]="form.phone"
@@ -95,9 +93,9 @@
             />
           </div>
 
-          <div class="col-md-12">
+          <div class="col-md-10 float-end mx-auto">
             <button
-              class="btn btn-primary float-center"
+              class="btn btn-primary float-end"
               type="submit"
               (click)="updateProfile()"
             >

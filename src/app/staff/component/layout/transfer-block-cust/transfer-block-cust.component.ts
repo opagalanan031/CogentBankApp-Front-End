@@ -43,7 +43,7 @@ export class TransferBlockCustComponent implements OnInit {
       console.log('Please Login With Staff ID');
     } else {
       approve.customerId = customerId;
-      approve.status = CustomerStatus.ENABLED;
+      approve.status = CustomerStatus.STATUS_ENABLED;
       this._staffService.putCustomerStatus(approve).subscribe((result) => {
         window.location.reload();
       });
@@ -57,7 +57,7 @@ export class TransferBlockCustComponent implements OnInit {
       console.log('Please Login With Staff ID');
     } else {
       approve.customerId = customerId;
-      approve.status = CustomerStatus.DISABLED;
+      approve.status = CustomerStatus.STATUS_DISABLED;
       this._staffService.putCustomerStatus(approve).subscribe((result) => {
         window.location.reload();
       });

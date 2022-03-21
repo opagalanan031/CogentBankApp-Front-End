@@ -23,11 +23,11 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       if (this.authService.isCustomer()) {
-        this.router.navigate(['/customer/dashboard']);
+        this.router.navigate(['/customer/view-dashboard']);
       } else if (this.authService.isStaff()) {
         this.router.navigate(['/staff/dashboard']);
       } else if (this.authService.isAdmin()) {
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin/view-dashboard']);
       }
     }
   }
@@ -41,7 +41,7 @@ export class LandingComponent implements OnInit {
         } else if (roles.includes('ROLE_STAFF')) {
           this.router.navigate(['/staff/dashboard']);
         } else if (roles.includes('ROLE_ADMIN')) {
-          this.router.navigate(['/admin/dashboard']);
+          this.router.navigate(['/admin/view-dashboard']);
         } else {
           this.errorMsg = 'Invalid role...';
           this.authService.logout();

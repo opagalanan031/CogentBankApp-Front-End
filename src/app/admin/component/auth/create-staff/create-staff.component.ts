@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/admin/service/auth.service';
-import { TokenStorageService } from 'src/app/admin/service/token-storage.service';
+import { CreateStaffRequest } from 'src/app/model/create-staff-request';
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: 'app-create-staff',
@@ -15,77 +9,36 @@ import { TokenStorageService } from 'src/app/admin/service/token-storage.service
   styleUrls: ['./create-staff.component.css'],
 })
 export class CreateStaffComponent implements OnInit {
-  formGroup: any = {
-    username: null,
-    fullName: null,
-    password: null,
-  };
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
+  registerForm = new CreateStaffRequest();
+  confirmPassword: string = '';
 
-  passwordFormGroup: FormGroup;
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private tokenStorageService: TokenStorageService
-  ) {
-    this.passwordFormGroup = this.formBuilder.group(
-      {
-        username: ['', [Validators.required]],
-        fullName: ['', [Validators.required]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(20),
-          ],
-        ],
-        passwordConfirmation: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(20),
-          ],
-        ],
-      },
-      {
-        validators: [
-          (form: AbstractControl) => {
-            const { password, passwordConfirmation } = form.value;
-            if (password !== passwordConfirmation) {
-              return {
-                notMatched: true,
-              };
-            } else {
-              return null;
-            }
-          },
-        ],
-      }
-    );
-  }
-  //
+  errorMsg: string = '';
+  message: string = '';
+
+  constructor(private router: Router, private adminService: AdminService) {}
+
   ngOnInit(): void {}
-  onSubmit(): void {
-    const { username, fullName, password } = this.passwordFormGroup.value;
-    this.authService
-      .createStaff(username, fullName, password)
-      .subscribe((data) => {
-        console.log(data);
-      });
-    this.gotoHome();
-  }
 
-  gotoHome() {
-    this.router.navigate(['/admin/create-staff']);
-    alert('Customer Registered successfully!');
-  }
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+  registerStaff() {
+    if (this.registerForm.password !== this.confirmPassword) {
+      this.errorMsg = 'Passwords do not match';
+    } else if (
+      !this.registerForm.username ||
+      !this.registerForm.fullName ||
+      !this.registerForm.password
+    ) {
+      alert('Invalid request');
+    } else {
+      this.errorMsg = '';
+      this.adminService.createStaff(this.registerForm).subscribe({
+        next: (result) => {
+          alert('Staff added successfully');
+          this.router.navigate(['/admin/view-dashboard']);
+        },
+        error: (err) => {
+          this.errorMsg = err.message;
+        },
+      });
+    }
   }
 }
