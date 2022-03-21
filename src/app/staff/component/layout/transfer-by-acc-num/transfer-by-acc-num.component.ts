@@ -37,13 +37,13 @@ export class TransferByAccNumComponent implements OnInit {
   // }
 
   accountDetails(): void {
+    console.log(this.accountNum);
     this._staffService.getAccountByAccNum(this.accountNum).subscribe({
       next: (result) => {
         this.accounts = result;
-        this.customerName = this.accounts.firstName
-          .concat(' ')
-          .concat(this.accounts.lastName);
-        this.accountBalance = this.accounts.balance;
+        this.customerName = this.accounts.customerName;
+
+        this.accountBalance = this.accounts.accountBalance;
         this.accountNumber = this.accounts.accountNumber;
       },
       error: (err) => {
