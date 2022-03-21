@@ -1,61 +1,73 @@
-<link
-  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-  rel="stylesheet"
-  id="bootstrap-css"
-/>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container">
+  <div class="row justify-content-center" align="center">
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div class="wrapper fadeInDown">
-  <div class="form-signin">
-    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
-      {{ errorMsg }}
-    </div>
-    <div *ngIf="message" class="alert alert-primary" role="alert">
-      {{ message }}
-    </div>
-    <div id="formContent">
-      <h1>Log In to your Account</h1>
-      <div class="fadeIn first">
-        <img
-          src="../../../../../assets/img/StaffIcon.png"
-          id="icon"
-          alt="Staff Icon"
-        />
-      </div>
-      <form>
-        <input
-          type="text"
-          id="login"
-          class="fadeIn second"
-          name="username"
-          placeholder="Enter User Name"
-          [(ngModel)]="loginReq.username"
-        />
-        <input
-          type="password"
-          id="password"
-          class="fadeIn third"
-          name="password"
-          placeholder="Password"
-          [(ngModel)]="loginReq.password"
-        />
-
-        <input
-          type="submit"
-          class="fadeIn fourth"
-          value="Log In"
-          (click)="login()"
-        />
-        <div>
-          <a routerLink="/customer/forgot-password">Forgot Password?</a>
+    <div class="fadeInDown container">
+      <div class="form-signin">
+        <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+          {{ errorMsg }}
         </div>
-      </form>
+        <div *ngIf="message" class="alert alert-primary" role="alert">
+          {{ message }}
+        </div>
+        <div id="formContent">
+          <h1>Log In to your Account</h1>
+          <div class="fadeIn first">
+            <img
+              src="../../../../../assets/img/StaffIcon.png"
+              id="icon"
+              alt="Staff Icon"
+            />
+          </div>
+          <div>
+            <form>
+              <input
+                type="text"
+                id="login"
+                class="fadeIn second"
+                name="username"
+                placeholder="Enter User Name"
+                [(ngModel)]="loginReq.username"
+              />
+              <input
+                type="password"
+                id="password"
+                class="fadeIn third"
+                name="password"
+                placeholder="Password"
+                [(ngModel)]="loginReq.password"
+              />
 
-      <div id="formFooter">
-        <a class="underlineHover" href="#" routerLink="/customer/register"
-          >Register here</a
-        >
+              <input
+                type="submit"
+                class="fadeIn fourth"
+                value="Log In"
+                (click)="login()"
+              />
+              <div>
+                <a
+                  href="/customer/forgot-password"
+                  routerLink="/customer/forgot-password"
+                  >Forgot Password?</a
+                >
+              </div>
+            </form>
+          </div>
+          <div id="formFooter">
+            <a
+              class="underlineHover"
+              href="/customer/register"
+              routerLink="/customer/register"
+              >Register here</a
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>
