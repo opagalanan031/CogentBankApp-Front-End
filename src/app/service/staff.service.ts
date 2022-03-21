@@ -26,10 +26,10 @@ export class StaffService {
 
   errorHandler(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      console.error('Error Ouccurred: ', error.error.message);
+      console.error('Error Occurred: ', error.error.message);
     } else {
       console.error(
-        `Backend Retuned Code ${error.status}, ` + `Body Was: ${error.error}`
+        `Backend returned Code ${error.status}, ` + `Body Was: ${error.error}`
       );
     }
     return throwError(() => new Error(error.error.message));

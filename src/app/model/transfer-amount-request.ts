@@ -3,5 +3,5 @@ export class TransferAmountRequest {
   toAccNumber: number | null = null;
   amount: number | null = null;
   reason: string | null = null;
-  byStaff: string | null = null;
+  by: string | null = null;
 }

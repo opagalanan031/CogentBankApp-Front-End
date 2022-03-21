@@ -39,7 +39,9 @@ export class TransferApproveAccComponent implements OnInit {
       const approve = new ApprovedAccountRequest();
       approve.accountNumber = accountNum;
       approve.approved = 'STATUS_APPROVED';
-      approve.staffUserName = token.username;
+
+      approve.staffUsername = token.username;
+
 
       this._staffService.putApproveAccs(approve).subscribe((result) => {
         window.location.reload();

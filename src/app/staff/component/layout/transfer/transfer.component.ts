@@ -24,9 +24,9 @@ export class TransferComponent implements OnInit {
   setTransfer(): void {
     if (this.fromAccNum && this.toAccNum && this.amount) {
       if (this.fromAccNum === this.toAccNum) {
-        alert('You Cannot Transfer Money In The Same Account.');
+        alert("You can't transfer money to the same account.");
       } else if (this.amount <= 0) {
-        alert('Transfer Amount Must Be Greater Than 0.');
+        alert('Transfer amount must be more than zero.');
       } else {
         const approve = new TransferAmountRequest();
         const token = this._tokenStorageService.getTokenResponse();
@@ -37,10 +37,10 @@ export class TransferComponent implements OnInit {
           approve.toAccNumber = this.toAccNum;
           approve.amount = this.amount;
           approve.reason = this.reason;
-          approve.byStaff = token.username;
+          approve.by = token.username;
           this._staffService.putTransfer(approve).subscribe({
             next: (result) => {
-              alert('Transfer Succeed');
+              alert('Transfer successful!');
             },
             error: (err) => {
               alert(err.message);
@@ -49,7 +49,7 @@ export class TransferComponent implements OnInit {
         }
       }
     } else {
-      alert('Please Check Account Number & Amout You Need Transfer.');
+      alert('Please Check Account Number & Amonut You Need Transfer.');
     }
   }
 }
