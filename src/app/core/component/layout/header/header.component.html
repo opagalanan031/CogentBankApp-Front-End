@@ -127,6 +127,7 @@
                 <!-- <a href="/customer/Register" *ngIf="!loggedIn"
             ><span class="glyphicon glyphicon-user"></span> Register</a
           > -->
+<<<<<<< HEAD
                 <a routerLink="/customer/register" *ngIf="!loggedIn"
                   ><span class="glyphicon glyphicon-user"></span> Register</a
                 >
@@ -169,6 +170,45 @@
             </ul>
           </div>
         </div>
+=======
+            <a routerLink="/customer/Register" *ngIf="!loggedIn"
+              ><span class="glyphicon glyphicon-user"></span> Register</a
+            >
+          </li>
+          <li>
+            <a routerLink="/staff/login" *ngIf="!loggedIn"
+              ><span class="glyphicon glyphicon-user"></span> Staff</a
+            >
+          </li>
+          <li>
+            <a routerLink="/admin/login" *ngIf="!loggedIn"
+              ><span class="glyphicon glyphicon-user"></span> Admin</a
+            >
+          </li>
+          <li *ngIf="loggedIn && username">
+            <a class="nav-link d-flex">
+              <span *ngIf="isCustomer" class="glyphicon glyphicon-person">
+                person
+              </span>
+              <span
+                *ngIf="isAdmin"
+                class="glyphicon glyphicon-admin-panel-settings"
+              >
+                admin_panel_settings
+              </span>
+              <span *ngIf="isStaff" class="material-icons-outlined me-1">
+                badge
+              </span>
+              <span>&nbsp;&nbsp;{{ username }}</span>
+            </a>
+          </li>
+          <li *ngIf="loggedIn">
+            <a class="nav-link glyphicon glyphicon-log-in" (click)="logout()">
+              Logout
+            </a>
+          </li>
+        </ul>
+>>>>>>> f233818e2a300c66287b2a2a9826dd27b1790db7
       </div>
     </a>
   </div>
