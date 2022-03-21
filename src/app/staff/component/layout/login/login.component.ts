@@ -1,3 +1,4 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/model/login-request';
@@ -12,6 +13,8 @@ import { StaffService } from 'src/app/service/staff.service';
 export class LoginComponent implements OnInit {
   form = new LoginRequest();
   errorMessage: string = '';
+  message: string = '';
+  imagePath: string = '../../../../images/StaffIcon.png';
   // isLoggedIn = false;
   // isLoginFailed = false;
 
@@ -24,8 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this._staffService.authenicate(this.form).subscribe(
-      (data) => {
+    this._staffService.authenicate(this.form).subscribe({
+      next: (data) => {
         var roles = data.roles;
         if (roles.includes('ROLE_STAFF')) {
           this._router.navigate(['/staff/dashboard']);
@@ -46,11 +49,11 @@ export class LoginComponent implements OnInit {
           this._authService.logout();
         }
       },
-      (err) => {
-        this.errorMessage = err.error.message;
+      error: (err) => {
+        this.errorMessage = err.message;
         // this.isLoginFailed = true;
-      }
-    );
+      },
+    });
   }
 
   // gotoDashboard() {

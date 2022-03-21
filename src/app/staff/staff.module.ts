@@ -21,5 +21,6 @@ import { TransferComponent } from './component/layout/transfer/transfer.componen
     TransferComponent,
   ],
   imports: [CommonModule, StaffRoutingModule, FormsModule],
+  exports: [DashboardComponent],
 })
 export class StaffModule {}

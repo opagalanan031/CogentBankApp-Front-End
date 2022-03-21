@@ -3,17 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './core/component/layout/landing/landing.component';
 
 const routes: Routes = [
-  // { path: '/', component: LandingComponent },
+  { path: '', component: LandingComponent },
   {
     path: 'customer',
     loadChildren: () =>
       import('./customer/customer.module').then((m) => m.CustomerModule),
   },
-  {
-    path: 'staff',
-    loadChildren: () =>
-      import('./staff/staff.module').then((m) => m.StaffModule),
-  },
+  // {
+  //   path: 'staff',
+  //   loadChildren: () =>
+  //     import('./staff/staff.module').then((m) => m.StaffModule),
+  // },
   {
     path: 'admin',
     loadChildren: () =>
