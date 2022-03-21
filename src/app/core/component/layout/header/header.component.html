@@ -1,4 +1,12 @@
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <<<<<<< HEAD
   <div class="container">
     <a>
       <svg
@@ -18,14 +26,13 @@
   </div>
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav nav-pills">
-        <!--
+      <ul class="nav nav-pills"> -->
+  <!--
         <li class="nav-item" *ngIf="!loggedIn">
           <a class="nav-link" routerLink="/customer/Register">Register</a>
         </li>
         -->
-
-        <li class="nav-item" *ngIf="!loggedIn">
+  <!-- <li class="nav-item" *ngIf="!loggedIn">
           <a class="nav-link" routerLink="/staff/authenticate">Staff</a>
         </li>
         <li class="nav-item" *ngIf="loggedIn && isCustomer">
@@ -40,6 +47,119 @@
           <button class="nav-link" (click)="logout()">Logout</button>
         </li>
       </ul>
+||||||| parent of 7feba04 (Update header design and function)
+  <div class="container">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      fill="currentColor"
+      class="bi bi-bank"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 .95 14.61 4h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.379l.5 2A.5.5 0 0 1 15.5 17H.5a.5.5 0 0 1-.485-.621l.5-2A.5.5 0 0 1 1 14V7H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 4h.89L8 .95zM3.776 4h8.447L8 2.05 3.776 4zM2 7v7h1V7H2zm2 0v7h2.5V7H4zm3.5 0v7h1V7h-1zm2 0v7H12V7H9.5zM13 7v7h1V7h-1zm2-1V5H1v1h14zm-.39 9H1.39l-.25 1h13.72l-.25-1z"
+      />
+    </svg>
+  </div>
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngIf="!loggedIn">
+          <a class="nav-link" routerLink="/customer/Register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="!loggedIn">
+          <a class="nav-link" routerLink="/staff/authenticate">Staff</a>
+        </li>
+        <li class="nav-item" *ngIf="!loggedIn && isCustomer">
+          <a class="nav-link" routerLink="/customer/update-profile">Profile</a>
+        </li>
+        <li *ngIf="loggedIn && username" class="nav-item">
+          <a class="nav-link d-flex">
+            <span *ngIf="isCustomer" class="material-icons-outlined me-1">
+              person
+            </span>
+            <span *ngIf="isAdmin" class="material-icons-outlined me-1">
+              admin_panel_settings
+            </span>
+            <span *ngIf="isStaff" class="material-icons-outlined me-1">
+              badge
+            </span>
+            <span>{{ username }}</span>
+          </a>
+        </li>
+        <li *ngIf="loggedIn" class="nav-item">
+          <button class="nav-link" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+======= -->
+  <div class="menu">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-bank"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 .95 14.61 4h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.379l.5 2A.5.5 0 0 1 15.5 17H.5a.5.5 0 0 1-.485-.621l.5-2A.5.5 0 0 1 1 14V7H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 4h.89L8 .95zM3.776 4h8.447L8 2.05 3.776 4zM2 7v7h1V7H2zm2 0v7h2.5V7H4zm3.5 0v7h1V7h-1zm2 0v7H12V7H9.5zM13 7v7h1V7h-1zm2-1V5H1v1h14zm-.39 9H1.39l-.25 1h13.72l-.25-1z"
+          />
+        </svg>
+        <a routerLink="/customer/update-profile" *ngIf="!loggedIn && isCustomer"
+          ><span class="glyphicon glyphicon-user"></span>Profile</a
+        >
+      </div>
+      <div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <!-- Example of href -->
+            <!-- <a href="/customer/Register" *ngIf="!loggedIn"
+            ><span class="glyphicon glyphicon-user"></span> Register</a
+          > -->
+            <a routerLink="/customer/Register" *ngIf="!loggedIn"
+              ><span class="glyphicon glyphicon-user"></span> Register</a
+            >
+          </li>
+          <li>
+            <a routerLink="/staff/login" *ngIf="!loggedIn"
+              ><span class="glyphicon glyphicon-user"></span> Staff</a
+            >
+          </li>
+          <li>
+            <a routerLink="/admin/login" *ngIf="!loggedIn"
+              ><span class="glyphicon glyphicon-user"></span> Admin</a
+            >
+          </li>
+          <li *ngIf="loggedIn && username">
+            <a class="nav-link d-flex">
+              <span *ngIf="isCustomer" class="glyphicon glyphicon-person">
+                person
+              </span>
+              <span
+                *ngIf="isAdmin"
+                class="glyphicon glyphicon-admin-panel-settings"
+              >
+                admin_panel_settings
+              </span>
+              <span *ngIf="isStaff" class="glyphicon glyphicon-badge">
+                badge
+              </span>
+              <span>{{ username }}</span>
+            </a>
+          </li>
+          <li *ngIf="loggedIn">
+            <button
+              class="nav-link glyphicon glyphicon-log-in"
+              (click)="logout()"
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
