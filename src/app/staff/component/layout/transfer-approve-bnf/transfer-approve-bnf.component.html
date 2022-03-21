@@ -41,9 +41,9 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">From Customer Name-CustomerId</th>
-                <th scope="col">Beneficiary Name-AcNo</th>
-                <th scope="col">Beneficiary Added Date</th>
+                <th scope="col">Customer ID of Requester</th>
+                <th scope="col">Beneficiary Account Number</th>
+                <th scope="col">Request Date</th>
                 <th scope="col">Approve</th>
               </tr>
             </thead>
@@ -52,12 +52,12 @@
                 <th scope="row">{{ beneficiary.fromCustomer }}</th>
                 <td>{{ beneficiary.beneficiaryAccountNumber }}</td>
                 <td>{{ beneficiary.dateAdded }}</td>
-                <td *ngIf="beneficiary.isApproved == 'yes'">
+                <td *ngIf="beneficiary.isApproved == 'STATUS_APPROVED'">
                   <button type="submit" class="btn btn-primary mb-3">
                     Approve
                   </button>
                 </td>
-                <td *ngIf="beneficiary.isApproved == 'no'">
+                <td *ngIf="beneficiary.isApproved == 'STATUS_NOT_APPROVED'">
                   <button
                     type="submit"
                     class="btn btn-primary mb-3"

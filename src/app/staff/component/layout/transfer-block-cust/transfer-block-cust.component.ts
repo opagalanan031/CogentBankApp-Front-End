@@ -44,7 +44,10 @@ export class TransferBlockCustComponent implements OnInit {
     } else {
       approve.customerId = customerId;
       approve.status = CustomerStatus.STATUS_ENABLED;
+      console.log('sending HTTP request');
       this._staffService.putCustomerStatus(approve).subscribe((result) => {
+        console.log('Enabled');
+        this.reloadData();
         window.location.reload();
       });
     }
@@ -57,8 +60,11 @@ export class TransferBlockCustComponent implements OnInit {
       console.log('Please Login With Staff ID');
     } else {
       approve.customerId = customerId;
+      console.log('sending HTTP request');
       approve.status = CustomerStatus.STATUS_DISABLED;
       this._staffService.putCustomerStatus(approve).subscribe((result) => {
+        console.log('Disabled');
+        this.reloadData();
         window.location.reload();
       });
     }

@@ -40,10 +40,10 @@ export class TransferApproveBnfComponent implements OnInit {
 
     approve.customerId = customer;
     approve.beneficiaryAccountNumber = accountNum;
-    approve.isApproved = 'yes';
+    approve.isApproved = 'STATUS_APPROVED';
     this._staffService.putBeneficiary(approve).subscribe(
       (result) => {
-        alert('Congratulations, Your Beneficiary Approved');
+        alert('The beneficiary has been approved.');
         window.location.reload();
       },
       (err) => {

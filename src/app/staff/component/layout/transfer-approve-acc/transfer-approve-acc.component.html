@@ -37,7 +37,7 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div>
         <div>
-          <h1>Newly Added Beneficiary</h1>
+          <h1>Unapproved Accounts</h1>
           <table class="table">
             <thead>
               <tr>
@@ -54,12 +54,12 @@
                 <td>{{ account.customerName }}</td>
                 <td>{{ account.accountNumber }}</td>
                 <td>{{ account.dateCreated }}</td>
-                <td *ngIf="account.approved == 'yes'">
+                <td *ngIf="account.approved == 'STATUS_APPROVED'">
                   <button type="submit" class="btn btn-primary mb-3">
                     Approved
                   </button>
                 </td>
-                <td *ngIf="account.approved == 'no'">
+                <td *ngIf="account.approved == 'STATUS_NOT_APPROVED'">
                   <button
                     type="submit"
                     class="btn btn-primary mb-3"
