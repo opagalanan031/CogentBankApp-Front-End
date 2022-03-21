@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { JwtResponse } from '../interfaces/jwt-response';
-import { StaffRespose } from '../interfaces/staff-respose';
+import { StaffResponse } from '../interfaces/staff-response';
 import { CreateStaffRequest } from '../model/create-staff-request';
 import { LoginRequest } from '../model/login-request';
 import { UpdateStaffRequest } from '../model/update-staff-request';
@@ -26,22 +26,22 @@ export class AdminService {
       .pipe(catchError(this.errorHandler));
   }
 
-  createStaff(request: CreateStaffRequest): Observable<StaffRespose> {
+  createStaff(request: CreateStaffRequest): Observable<StaffResponse> {
     return this._httpClient
-      .post<StaffRespose>(this.baseUrl + 'staff', request)
+      .post<StaffResponse>(this.baseUrl + 'staff', request)
       .pipe(catchError(this.errorHandler));
   }
 
-  getAllStaff(): Observable<StaffRespose[]> {
+  getAllStaff(): Observable<StaffResponse[]> {
     return this._httpClient
-      .get<StaffRespose[]>(this.baseUrl + 'staff')
+      .get<StaffResponse[]>(this.baseUrl + 'staff')
       .pipe(catchError(this.errorHandler));
   }
 
-  updateStaffStatus(request: UpdateStaffRequest): Observable<StaffRespose> {
+  updateStaffStatus(request: UpdateStaffRequest): Observable<StaffResponse> {
     console.log(request);
     return this._httpClient
-      .put<StaffRespose>(this.baseUrl + 'staff', request)
+      .put<StaffResponse>(this.baseUrl + 'staff', request)
       .pipe(catchError(this.errorHandler));
   }
 

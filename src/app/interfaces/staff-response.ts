@@ -1,8 +1,8 @@
 import { CustomerStatus } from '../enums/customer-status';
 
-export interface StaffRespose {
+export interface StaffResponse {
   staffId: number;
   staffName: string;
-  staffUserName: string;
+  staffUsername: string;
   status: CustomerStatus;
 }
