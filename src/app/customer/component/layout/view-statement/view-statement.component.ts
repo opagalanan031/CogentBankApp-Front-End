@@ -62,6 +62,7 @@ export class ViewStatementComponent implements OnInit {
         console.log(data);
         this.accountDetails = data;
         this.transactions = data.transactions;
+        console.log(this.transactions);
       });
   }
 }

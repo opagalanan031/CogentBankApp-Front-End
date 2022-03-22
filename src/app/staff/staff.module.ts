@@ -9,6 +9,7 @@ import { TransferApproveBnfComponent } from './component/layout/transfer-approve
 import { TransferApproveAccComponent } from './component/layout/transfer-approve-acc/transfer-approve-acc.component';
 import { DashboardComponent } from './component/layout/dashboard/dashboard.component';
 import { TransferComponent } from './component/layout/transfer/transfer.component';
+import { NavbarComponent } from './component/layout/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TransferComponent } from './component/layout/transfer/transfer.componen
     TransferApproveAccComponent,
     DashboardComponent,
     TransferComponent,
+    NavbarComponent,
   ],
   imports: [CommonModule, StaffRoutingModule, FormsModule],
   exports: [DashboardComponent],
