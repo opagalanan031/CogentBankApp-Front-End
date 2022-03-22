@@ -52,10 +52,10 @@ export class TransferByAccNumComponent implements OnInit {
         this.accountBalance = '';
         this.accountNumber = '';
         console.log(err.message);
-        if (err.message === 'account not found') {
-          alert('Account Does Not Exist, Please Check Account Number.');
+        if (err.message === 'Sorry, Account Not Found') {
+          alert('Account does not exist, please check account number.');
         } else {
-          alert('Invalid Input. Please Enter Number Only.');
+          alert('Invalid input. Please enter a numeric value.');
         }
       },
     });
