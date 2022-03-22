@@ -1,42 +1,38 @@
-<ul class="nav flex-column d-flex sidebar">
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/view-dashboard" routerLinkActive="active">
-      <span data-feather="home"></span>
-      Dashboard
-    </a>
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      routerLink="/create-account"
-      routerActiveLink="active"
-    >
-      Create Account
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/add-beneficiary" routerActiveLink="active">
-      Add Beneficiary
-    </a>
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="/remove-beneficiary"
-      routerActiveLink="active"
-    >
-      Remove Beneficiary
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/transfer-amount" routerActiveLink="active">
-      Transfer Money
-    </a>
-  </li>
-  <li class="/nav-item">
-    <a class="nav-link" routerLink="/view-statement" routerActiveLink="active">
-      View Statement
-    </a>
-  </li>
-</ul>
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+/>
+
+<div class="list-group">
+  <a routerLink="/view-dashboard" class="list-group-item"
+    ><i class="fa fa-credit-card"></i>
+    <span data-feather="home">Dashboard</span></a
+  >
+
+  <a aria-current="page" routerLink="/create-account" class="list-group-item"
+    ><i class="fa fa-book"></i> <span>Create Account</span></a
+  >
+
+  <a routerLink="/add-beneficiary" class="list-group-item"
+    ><i class="fa fa-key"></i> <span>Add Beneficiary</span></a
+  >
+
+  <a routerLink="/remove-beneficiary" class="list-group-item"
+    ><i class="fa fa-key"></i> <span>Remove Beneficiary</span></a
+  >
+
+  <a routerLink="/transfer-amount" class="list-group-item"
+    ><i class="fa fa-arrow-circle-o-left"></i> <span>Transfer Money</span></a
+  >
+
+  <a routerLink="/view-statement" class="list-group-item"
+    ><i class="fa fa-compass"></i> <span>View Statement</span></a
+  >
+</div>
